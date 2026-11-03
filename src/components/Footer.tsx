@@ -105,6 +105,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
+                  href="https://www.linkedin.com/in/jyoti-kumari-b8aaba268/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-300 flex items-center gap-1.5 transition-colors"
+                >
+                  <LinkedInIcon className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Jyoti Kumari (LinkedIn Profile)</span>
+                  <ExternalLink className="w-3 h-3 text-slate-600" />
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"

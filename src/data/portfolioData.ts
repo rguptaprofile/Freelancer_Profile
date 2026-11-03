@@ -117,7 +117,7 @@ export const foundersData: Founder[] = [
       'Conversion Optimization',
     ],
     socialLinks: {
-      linkedin: 'https://www.linkedin.com',
+      linkedin: 'https://www.linkedin.com/in/jyoti-kumari-b8aaba268/',
       email: 'mailto:vruchika02@gmail.com',
     },
     image: '/images/jyoti-kumari.jpg',

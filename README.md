@@ -23,7 +23,7 @@ The portfolio is structured into **5 core sections**:
   - Direct public links: LinkedIn, GitHub, LeetCode, Quora, Email (`rahulgupt1231@gmail.com`).
 - **Jyoti Kumari (BIT Mesra, ECE Engineering Student):**
   - UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
-  - Direct public links: LinkedIn and Email (`vruchika02@gmail.com`).
+  - Direct public links: LinkedIn ([jyoti-kumari-b8aaba268](https://www.linkedin.com/in/jyoti-kumari-b8aaba268/)) and Email (`vruchika02@gmail.com`).
 
 ### 3. 💼 Work (Pitch, KYC Verification, Digital Bond & Secure Payment)
 Built specifically for **Startup Founders, Corporate & Banking Institutions, E-commerce / Shop Owners, and EdTech Platforms**:
