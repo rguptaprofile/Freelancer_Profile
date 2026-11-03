@@ -65,13 +65,13 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
           <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
             <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
               <span className="text-[10px] font-mono uppercase text-slate-400 block">Academic Foundation</span>
-              <span className="text-sm font-bold text-white block">IIT Patna</span>
+              <span className="text-sm font-bold text-white block">IIT Patna (2025 – 2028)</span>
               <span className="text-xs text-blue-400">B.Sc. CS &amp; Data Analytics</span>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
               <span className="text-[10px] font-mono uppercase text-slate-400 block">Engineering Pedigree</span>
               <span className="text-sm font-bold text-white block">BIT Mesra</span>
-              <span className="text-xs text-amber-400">B.Tech Electrical Eng.</span>
+              <span className="text-xs text-amber-400">B.Tech ECE (Electronics &amp; Comm.)</span>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
               <span className="text-[10px] font-mono uppercase text-slate-400 block">Govt. Portal Experience</span>

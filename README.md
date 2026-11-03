@@ -1,7 +1,7 @@
 # Rahul & Jyoti Studio | Professional Joint Freelancer Portfolio
 
 > **Full-Stack Engineering & Strategic Content Studio**  
-> Co-Founders: **Rahul Raj** (IIT Patna — B.Sc. CS & Data Analytics, 2025–2028) & **Jyoti Kumari** (BIT Mesra — B.Tech EE, Engineering Student)  
+> Co-Founders: **Rahul Raj** (IIT Patna — B.Sc. CS & Data Analytics, 2025–2028) & **Jyoti Kumari** (BIT Mesra — B.Tech ECE, ECE Engineering Student)  
 > Official Contact: [rahulgupt1231@gmail.com](mailto:rahulgupt1231@gmail.com) | [vruchika02@gmail.com](mailto:vruchika02@gmail.com)
 
 ---
@@ -21,7 +21,7 @@ The portfolio is structured into **5 core sections**:
   - Software Engineering Intern at **NeGD, Ministry of Electronics & IT (MeitY), Govt. of India** & Full-Stack Intern at **HCL GUVI**.
   - 25+ Public GitHub Repositories & 85+ LeetCode problems solved.
   - Direct public links: LinkedIn, GitHub, LeetCode, Quora, Email (`rahulgupt1231@gmail.com`).
-- **Jyoti Kumari (BIT Mesra, Engineering Student):**
+- **Jyoti Kumari (BIT Mesra, ECE Engineering Student):**
   - UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
   - Direct public links: LinkedIn and Email (`vruchika02@gmail.com`).
 

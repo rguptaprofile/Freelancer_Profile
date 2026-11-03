@@ -24,7 +24,7 @@ export const foundersData: Founder[] = [
       },
       {
         title: 'Premier Academic Pedigree',
-        subtitle: 'IIT Patna — Computer Science & Data Analytics',
+        subtitle: 'IIT Patna — Computer Science & Data Analytics (Session: 2025 – 2028)',
         verified: true,
       },
       {
@@ -71,15 +71,15 @@ export const foundersData: Founder[] = [
     name: 'Jyoti Kumari',
     role: 'Co-Founder & Web Design / Editorial Strategist',
     specialization: 'UI/UX Wireframing, Web Layouts & Strategic Copywriting',
-    degree: 'B.Tech in Electrical Engineering',
+    degree: 'B.Tech in Electronics & Communication Engineering (ECE)',
     institution: 'Birla Institute of Technology (BIT) Mesra',
-    gradYear: 'Engineering Student',
+    gradYear: 'ECE Engineering Student',
     experienceSummary:
-      'Engineering student at BIT Mesra and creative content strategist. Bridges complex technical logic with clean visual hierarchy and high-converting storytelling. Specializes in turning complex product features into intuitive user journeys and clear business copy.',
+      'ECE Engineering student at BIT Mesra and creative content strategist. Bridges complex technical logic with clean visual hierarchy and high-converting storytelling. Specializes in turning complex product features into intuitive user journeys and clear business copy.',
     verifiedBadges: [
       {
         title: 'Engineering Pedigree',
-        subtitle: 'BIT Mesra — B.Tech EE',
+        subtitle: 'BIT Mesra — B.Tech ECE',
         verified: true,
       },
       {
