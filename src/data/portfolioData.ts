@@ -120,7 +120,7 @@ export const foundersData: Founder[] = [
       linkedin: 'https://www.linkedin.com',
       email: 'mailto:vruchika02@gmail.com',
     },
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
+    image: '/images/jyoti-kumari.jpg',
     quote:
       'Great web products fail when good code is wrapped in confusing text or generic templates. I design intuitive visual hierarchies and write copy that turns skeptical visitors into qualified clients.',
   },

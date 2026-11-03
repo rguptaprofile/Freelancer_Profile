@@ -68,7 +68,7 @@ export const PhotoLightboxModal: React.FC<PhotoLightboxModalProps> = ({
 
             <a
               href={imageSrc}
-              download="Rahul-Raj-Photo.png"
+              download={`${name.replace(/\s+/g, '-')}-Photo.jpg`}
               className="p-1.5 sm:p-2 rounded-lg bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 transition-colors flex items-center gap-1 text-xs"
               title="Download Full Resolution Photo"
             >
