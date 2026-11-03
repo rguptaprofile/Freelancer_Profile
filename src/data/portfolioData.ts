@@ -57,9 +57,9 @@ export const foundersData: Founder[] = [
     ],
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/rahul-raj-33a6a225b',
-      github: 'https://github.com',
-      leetcode: 'https://leetcode.com',
-      quora: 'https://quora.com',
+      github: 'https://github.com/rguptaprofile',
+      leetcode: 'https://leetcode.com/u/rguptaprofile/',
+      quora: 'https://www.quora.com/profile/Rahul-Gupta-Sah-Rukh',
       email: 'mailto:rahulgupt1231@gmail.com',
     },
     image: '/images/rahul-raj.png',

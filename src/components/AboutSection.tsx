@@ -177,33 +177,39 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenPhoto }) => {
 
                   {isRahul && (
                     <>
-                      <a
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors"
-                      >
-                        <GitHubIcon className="w-3.5 h-3.5" />
-                        <span>GitHub (25+ Repos)</span>
-                      </a>
-                      <a
-                        href="https://leetcode.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors"
-                      >
-                        <LeetCodeIcon className="w-3.5 h-3.5 text-amber-400" />
-                        <span>LeetCode (85+)</span>
-                      </a>
-                      <a
-                        href="https://quora.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-red-950/30 hover:bg-red-900/40 text-red-300 border border-red-800/40 flex items-center gap-1.5 transition-colors"
-                      >
-                        <QuoraIcon className="w-3.5 h-3.5 text-red-400" />
-                        <span>Quora Profile</span>
-                      </a>
+                      {founder.socialLinks.github && (
+                        <a
+                          href={founder.socialLinks.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors"
+                        >
+                          <GitHubIcon className="w-3.5 h-3.5" />
+                          <span>GitHub (25+ Repos)</span>
+                        </a>
+                      )}
+                      {founder.socialLinks.leetcode && (
+                        <a
+                          href={founder.socialLinks.leetcode}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors"
+                        >
+                          <LeetCodeIcon className="w-3.5 h-3.5 text-amber-400" />
+                          <span>LeetCode (85+)</span>
+                        </a>
+                      )}
+                      {founder.socialLinks.quora && (
+                        <a
+                          href={founder.socialLinks.quora}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-red-950/30 hover:bg-red-900/40 text-red-300 border border-red-800/40 flex items-center gap-1.5 transition-colors"
+                        >
+                          <QuoraIcon className="w-3.5 h-3.5 text-red-400" />
+                          <span>Quora Profile</span>
+                        </a>
+                      )}
                     </>
                   )}
 

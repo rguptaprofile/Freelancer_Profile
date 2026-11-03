@@ -117,7 +117,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/rguptaprofile"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-slate-200 flex items-center gap-1.5 transition-colors"
@@ -129,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://leetcode.com"
+                  href="https://leetcode.com/u/rguptaprofile/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-amber-300 flex items-center gap-1.5 transition-colors"
@@ -141,7 +141,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://quora.com"
+                  href="https://www.quora.com/profile/Rahul-Gupta-Sah-Rukh"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-red-300 flex items-center gap-1.5 transition-colors"

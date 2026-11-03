@@ -20,7 +20,7 @@ The portfolio is structured into **5 core sections**:
   - Full photo display with uncropped natural aspect ratio and interactive **Full Photo Lightbox Modal** (Zoom in/out, download controls).
   - Software Engineering Intern at **NeGD, Ministry of Electronics & IT (MeitY), Govt. of India** & Full-Stack Intern at **HCL GUVI**.
   - 25+ Public GitHub Repositories & 85+ LeetCode problems solved.
-  - Direct public links: LinkedIn, GitHub, LeetCode, Quora, Email (`rahulgupt1231@gmail.com`).
+  - Direct public links: LinkedIn ([rahul-raj-33a6a225b](https://www.linkedin.com/in/rahul-raj-33a6a225b)), GitHub ([rguptaprofile](https://github.com/rguptaprofile)), LeetCode ([rguptaprofile](https://leetcode.com/u/rguptaprofile/)), Quora ([Rahul-Gupta-Sah-Rukh](https://www.quora.com/profile/Rahul-Gupta-Sah-Rukh)), Email (`rahulgupt1231@gmail.com`).
 - **Jyoti Kumari (BIT Mesra, ECE Engineering Student):**
   - UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
   - Direct public links: LinkedIn ([jyoti-kumari-b8aaba268](https://www.linkedin.com/in/jyoti-kumari-b8aaba268/)) and Email (`vruchika02@gmail.com`).
