@@ -15,7 +15,7 @@ export const ContactSection: React.FC = () => {
     const mailtoBody = encodeURIComponent(
       `Name: ${senderName}\nEmail: ${senderEmail}\nCategory: ${subjectCategory}\n\nMessage:\n${message}\n\nSent via Rahul & Jyoti Studio Contact Form`
     );
-    window.location.href = `mailto:contact@rahulraj.dev?subject=${mailtoSubject}&body=${mailtoBody}`;
+    window.location.href = `mailto:rahulgupt1231@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
     setSubmitted(true);
   };
 
@@ -77,10 +77,15 @@ export const ContactSection: React.FC = () => {
                     <Mail className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div>
-                    <span className="font-semibold text-white block">Official Contact Inbox</span>
-                    <a href="mailto:contact@rahulraj.dev" className="text-cyan-400 hover:underline">
-                      contact@rahulraj.dev
-                    </a>
+                    <span className="font-semibold text-white block">Official Contact Inboxes</span>
+                    <div className="space-y-0.5 pt-0.5">
+                      <div className="text-[11px] text-slate-400">
+                        Rahul: <a href="mailto:rahulgupt1231@gmail.com" className="text-cyan-400 hover:underline">rahulgupt1231@gmail.com</a>
+                      </div>
+                      <div className="text-[11px] text-slate-400">
+                        Jyoti: <a href="mailto:vruchika02@gmail.com" className="text-amber-400 hover:underline">vruchika02@gmail.com</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

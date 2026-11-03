@@ -1,8 +1,8 @@
 # Rahul & Jyoti Studio | Professional Joint Freelancer Portfolio
 
 > **Full-Stack Engineering & Strategic Content Studio**  
-> Co-Founders: **Rahul Raj** (IIT Patna — CS & Data Analytics) & **Jyoti Verma** (BIT Mesra — B.Tech EE)  
-> Direct Email: [contact@rahulraj.dev](mailto:contact@rahulraj.dev)
+> Co-Founders: **Rahul Raj** (IIT Patna — CS & Data Analytics) & **Jyoti Kumari** (BIT Mesra — B.Tech EE)  
+> Rahul's Email: [rahulgupt1231@gmail.com](mailto:rahulgupt1231@gmail.com) | Jyoti's Email: [vruchika02@gmail.com](mailto:vruchika02@gmail.com)
 
 ---
 
@@ -21,9 +21,9 @@ The portfolio has been streamlined into **5 core sections**:
   - **Verified Govt. & Industry Experience:** Software Engineering Intern at **NeGD, Ministry of Electronics & IT (MeitY), Govt. of India** & Full-Stack Intern at **HCL GUVI**.
   - **Problem Solving:** 25+ Public GitHub Repositories & 85+ LeetCode problems solved.
   - **Public Profiles:** Clickable links to LinkedIn, GitHub, LeetCode, and Quora.
-- **Jyoti Verma (BIT Mesra Patna Extension Campus):**
+- **Jyoti Kumari (BIT Mesra):**
   - **Engineering-Driven Design:** UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
-  - **Public Profiles:** LinkedIn and direct email.
+  - **Public Profiles:** LinkedIn and direct email (`vruchika02@gmail.com`).
 
 ### 3. 💼 Work (Client Pitch, Digital Bond Paper & Hiring Engine)
 Built specifically for **Startup Founders, Corporate & Banking Institutions, E-commerce / Shop Owners, and EdTech Platforms**:
@@ -39,7 +39,7 @@ Built specifically for **Startup Founders, Corporate & Banking Institutions, E-c
   - Pay the 40% initial deposit via UPI (GPay, PhonePe, Paytm, QR scan), Credit/Debit Card, or Net Banking.
   - Generates an official **Digital Payment Receipt & Invoice** with Transaction ID, Date, Stamp, and remaining milestone schedule.
 - **Step 4: Direct Email Dispatch to Rahul's Inbox:**
-  - Automatically packages the pitch, signed agreement ID, and payment reference into a structured email dispatched to `contact@rahulraj.dev`.
+  - Automatically packages the pitch, signed agreement ID, and payment reference into a structured email dispatched to `rahulgupt1231@gmail.com`.
   - Includes one-click WhatsApp notification and copyable pitch summary.
 
 ### 4. 📚 Catalog
@@ -50,7 +50,7 @@ Built specifically for **Startup Founders, Corporate & Banking Institutions, E-c
 - Concrete deliverables, technology badges, transparent price estimates, and "Select & Pitch This Service" buttons.
 
 ### 5. 📬 Contact
-- **Studio Summary:** 2–4 hour guaranteed response time, Patna/Remote availability, direct email (`contact@rahulraj.dev`).
+- **Studio Summary:** 2–4 hour guaranteed response time, Patna/Remote availability, direct emails (`rahulgupt1231@gmail.com` / `vruchika02@gmail.com`).
 - **Direct Query Form:** Send general inquiries, architecture questions, or collaboration requests directly to Rahul's inbox with WhatsApp backup.
 
 ---

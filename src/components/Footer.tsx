@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Full-Stack Engineering &amp; Strategic Content Studio by Rahul Raj (IIT Patna) and Jyoti Verma (BIT Mesra).
+              Full-Stack Engineering &amp; Strategic Content Studio by Rahul Raj (IIT Patna) and Jyoti Kumari (BIT Mesra).
               Protected by a binding 40%-10%-50% phased milestone agreement.
             </p>
             <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-400">
@@ -147,11 +147,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <span>Pitch Scope &amp; Sign Bond</span>
             </button>
             <a
-              href="mailto:contact@rahulraj.dev"
+              href="mailto:rahulgupt1231@gmail.com"
               className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors border border-slate-700"
             >
               <Mail className="w-3.5 h-3.5 text-cyan-400" />
-              <span>contact@rahulraj.dev</span>
+              <span>rahulgupt1231@gmail.com</span>
             </a>
           </div>
         </div>
@@ -159,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Bottom copyright */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-mono">
           <div>
-            &copy; {new Date().getFullYear()} Rahul Raj &amp; Jyoti Verma. All Rights Reserved.
+            &copy; {new Date().getFullYear()} Rahul Raj &amp; Jyoti Kumari. All Rights Reserved.
           </div>
           <div>
             IIT Patna &bull; BIT Mesra &bull; 40%-10%-50% Phased Milestone Agreement

@@ -24,7 +24,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-xs font-mono font-medium text-slate-300">
-              Two-Partner Studio &bull; Direct Execution by Rahul Raj (IIT Patna) &amp; Jyoti Verma (BIT Mesra)
+              Two-Partner Studio &bull; Direct Execution by Rahul Raj (IIT Patna) &amp; Jyoti Kumari (BIT Mesra)
             </span>
           </div>
 
@@ -70,7 +70,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
             </div>
             <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
               <span className="text-[10px] font-mono uppercase text-slate-400 block">Engineering Pedigree</span>
-              <span className="text-sm font-bold text-white block">BIT Mesra Patna</span>
+              <span className="text-sm font-bold text-white block">BIT Mesra</span>
               <span className="text-xs text-amber-400">B.Tech Electrical Eng.</span>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
@@ -124,7 +124,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
                 </p>
               </div>
               <div className="text-[11px] font-mono text-amber-400 pt-3 border-t border-slate-800">
-                Lead: Jyoti Verma (BIT Mesra)
+                Lead: Jyoti Kumari (BIT Mesra)
               </div>
             </div>
 

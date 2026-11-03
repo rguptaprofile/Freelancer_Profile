@@ -60,26 +60,26 @@ export const foundersData: Founder[] = [
       github: 'https://github.com',
       leetcode: 'https://leetcode.com',
       quora: 'https://quora.com',
-      email: 'mailto:contact@rahulraj.dev',
+      email: 'mailto:rahulgupt1231@gmail.com',
     },
     image: '/images/rahul-raj.png',
     quote:
       'We do not deliver black-box code or broken promises. Every line of backend logic is engineered for audit-grade reliability, strict security, and clean API contracts.',
   },
   {
-    id: 'jyoti-verma',
-    name: 'Jyoti Verma',
+    id: 'jyoti-kumari',
+    name: 'Jyoti Kumari',
     role: 'Co-Founder & Web Design / Editorial Strategist',
     specialization: 'UI/UX Wireframing, Web Layouts & Strategic Copywriting',
     degree: 'B.Tech in Electrical Engineering',
-    institution: 'Birla Institute of Technology (BIT) Mesra — Patna Campus',
+    institution: 'Birla Institute of Technology (BIT) Mesra',
     gradYear: 'Engineering Graduate',
     experienceSummary:
       'Engineering-trained designer and content strategist. Bridges complex technical logic with clean visual hierarchy and high-converting storytelling. Specializes in turning complex product features into intuitive user journeys and clear business copy.',
     verifiedBadges: [
       {
         title: 'Engineering Pedigree',
-        subtitle: 'BIT Mesra (Patna Extension Campus) — B.Tech EE',
+        subtitle: 'BIT Mesra — B.Tech EE',
         verified: true,
       },
       {
@@ -118,7 +118,7 @@ export const foundersData: Founder[] = [
     ],
     socialLinks: {
       linkedin: 'https://www.linkedin.com',
-      email: 'mailto:jyoti.verma.studio@gmail.com',
+      email: 'mailto:vruchika02@gmail.com',
     },
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
     quote:
@@ -282,7 +282,7 @@ export const bondTermsAndConditions = [
     clauseNumber: 'Clause 1',
     title: 'Scope of Engagement & Direct Partner Execution',
     description:
-      'The project will be executed exclusively by Co-Founders Rahul Raj (Lead Full-Stack Engineer) and Jyoti Verma (Lead Web Designer & Content Strategist). No work shall be outsourced or subcontracted to third-party junior freelancers.',
+      'The project will be executed exclusively by Co-Founders Rahul Raj (Lead Full-Stack Engineer) and Jyoti Kumari (Lead Web Designer & Content Strategist). No work shall be outsourced or subcontracted to third-party junior freelancers.',
   },
   {
     clauseNumber: 'Clause 2',

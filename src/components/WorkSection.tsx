@@ -137,14 +137,14 @@ Status: VERIFIED SUCCESSFUL` : ''}
 
 =====================================================
 Dispatched via Rahul & Jyoti Studio Hiring Engine
-Recipient: contact@rahulraj.dev
+Recipient: rahulgupt1231@gmail.com
 =====================================================`;
   };
 
   const handleSendEmail = () => {
     const subject = encodeURIComponent(`New Project Pitch & Signed Bond: ${companyName || clientName} (${serviceType})`);
     const body = encodeURIComponent(generateFormattedEmailBody());
-    window.location.href = `mailto:contact@rahulraj.dev?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:rahulgupt1231@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleCopySummary = () => {
@@ -835,7 +835,7 @@ Recipient: contact@rahulraj.dev
               </div>
 
               <p className="text-xs text-slate-300 leading-relaxed">
-                Click below to instantly deliver the verified project brief, agreement bond certificate, and payment confirmation to Rahul&apos;s direct email address (<strong className="text-white">contact@rahulraj.dev</strong>).
+                Click below to instantly deliver the verified project brief, agreement bond certificate, and payment confirmation to Rahul&apos;s direct email address (<strong className="text-white">rahulgupt1231@gmail.com</strong>).
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-3">

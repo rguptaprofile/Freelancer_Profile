@@ -19,7 +19,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenPhoto }) => {
             <span>FOUNDERS PEDIGREE &amp; CREDENTIALS</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            About Rahul Raj &amp; Jyoti Verma
+            About Rahul Raj &amp; Jyoti Kumari
           </h2>
           <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
             We are an agile two-partner engineering and content studio. Direct partner execution from day one—no junior subcontractors, no project managers, and 100% transparent communication.
