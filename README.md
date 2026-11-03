@@ -1,57 +1,62 @@
 # Rahul & Jyoti Studio | Professional Joint Freelancer Portfolio
 
 > **Full-Stack Engineering & Strategic Content Studio**  
-> Co-Founders: **Rahul Raj** (IIT Patna — CS & Data Analytics) & **Jyoti Kumari** (BIT Mesra — B.Tech EE)  
-> Rahul's Email: [rahulgupt1231@gmail.com](mailto:rahulgupt1231@gmail.com) | Jyoti's Email: [vruchika02@gmail.com](mailto:vruchika02@gmail.com)
+> Co-Founders: **Rahul Raj** (IIT Patna — B.Sc. CS & Data Analytics, 2025–2028) & **Jyoti Kumari** (BIT Mesra — B.Tech EE, Engineering Student)  
+> Official Contact: [rahulgupt1231@gmail.com](mailto:rahulgupt1231@gmail.com) | [vruchika02@gmail.com](mailto:vruchika02@gmail.com)
 
 ---
 
 ## 🧭 Streamlined Portfolio Architecture
 
-The portfolio has been streamlined into **5 core sections**:
+The portfolio is structured into **5 core sections**:
 
 ### 1. 🏠 Home
-- **Full Studio Overview:** Dual-engine value proposition combining production-grade full-stack code (React, TypeScript, Node.js, Python, PostgreSQL, Redis) with conversion UI/UX wireframes and research-backed B2B copywriting.
-- **Client Ratings & Trust Highlights:** Verified 4.95/5.0 review scores from SaaS startups, FinTech/Banking enterprises, retail shop owners, and EdTech platforms.
-- **Direct Action CTAs:** One-click shortcuts to project pitching and the service catalog.
+- **Studio Overview:** Engineering full-stack web applications and high-conversion authority B2B content under one roof.
+- **Client Ratings & Reviews:** Verified 4.95/5.0 review scores from SaaS startups, corporate banks, retail shop owners, and EdTech platforms.
+- **Direct Action CTAs:** One-click shortcuts to project pitching and service catalog.
 
 ### 2. 👤 About
-- **Rahul Raj (IIT Patna):**
-  - **Full Photo Display:** Clear, uncropped full photo with natural aspect ratio and an interactive **Click to Open Full Photo** Lightbox Modal with zoom and download controls.
-  - **Verified Govt. & Industry Experience:** Software Engineering Intern at **NeGD, Ministry of Electronics & IT (MeitY), Govt. of India** & Full-Stack Intern at **HCL GUVI**.
-  - **Problem Solving:** 25+ Public GitHub Repositories & 85+ LeetCode problems solved.
-  - **Public Profiles:** Clickable links to LinkedIn, GitHub, LeetCode, and Quora.
-- **Jyoti Kumari (BIT Mesra):**
-  - **Engineering-Driven Design:** UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
-  - **Public Profiles:** LinkedIn and direct email (`vruchika02@gmail.com`).
+- **Rahul Raj (IIT Patna, Session: 2025 – 2028):**
+  - Full photo display with uncropped natural aspect ratio and interactive **Full Photo Lightbox Modal** (Zoom in/out, download controls).
+  - Software Engineering Intern at **NeGD, Ministry of Electronics & IT (MeitY), Govt. of India** & Full-Stack Intern at **HCL GUVI**.
+  - 25+ Public GitHub Repositories & 85+ LeetCode problems solved.
+  - Direct public links: LinkedIn, GitHub, LeetCode, Quora, Email (`rahulgupt1231@gmail.com`).
+- **Jyoti Kumari (BIT Mesra, Engineering Student):**
+  - UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
+  - Direct public links: LinkedIn and Email (`vruchika02@gmail.com`).
 
-### 3. 💼 Work (Client Pitch, Digital Bond Paper & Hiring Engine)
+### 3. 💼 Work (Pitch, KYC Verification, Digital Bond & Secure Payment)
 Built specifically for **Startup Founders, Corporate & Banking Institutions, E-commerce / Shop Owners, and EdTech Platforms**:
-- **Step 1: Project Scope & Pitch:**
-  - Select Organization Category (Startup, Bank, Retail Shop, EdTech, SME).
-  - Select Online Service (Custom Web App, Banking Workflow, Store Portal, AI Tool, Content Writing, Turnkey Bundle).
-  - Select Budget Tier with **real-time 40% - 10% - 50% milestone calculation**.
-- **Step 2: Official Digital Bond Paper & SLA Agreement:**
-  - Mandatory Clause 2: **40% upfront advance to start work, 10% during staging review, and 50% upon final completion & Git handover**.
+- **Step 1: Jurisdiction & Scope:**
+  - Select Client Origin: **🇮🇳 Indian Client (INR ₹)** or **🌍 International Client (USD $)**.
+  - Organization Type & Service selection.
+  - Real-time 40% - 10% - 50% milestone fee calculation.
+- **Step 2: Identity & KYC Verification:**
+  - **Authorized Profile Photo Upload** with live thumbnail preview.
+  - **National Identity Card Upload & ID Number** (Aadhaar / PAN / GSTIN for India; Passport / National ID / Tax ID for International).
+  - Verified Business Email, Phone/WhatsApp with country code, Registered Address & Country.
+- **Step 3: Official Digital Bond Paper & SLA Deed:**
+  - Certified with client's verified KYC reference number and company details.
+  - Binding 40%-10%-50% phased payment terms: **40% upfront advance to begin work, 10% upon live staging review, and 50% upon final delivery & Git handover**.
   - Work rules: 14-day warranty, 100% IP transfer upon completion, NDA & confidentiality.
   - Authorized digital signature & execution timestamp.
-- **Step 3: Real Payment Gateway Simulator:**
-  - Pay the 40% initial deposit via UPI (GPay, PhonePe, Paytm, QR scan), Credit/Debit Card, or Net Banking.
-  - Generates an official **Digital Payment Receipt & Invoice** with Transaction ID, Date, Stamp, and remaining milestone schedule.
-- **Step 4: Direct Email Dispatch to Rahul's Inbox:**
-  - Automatically packages the pitch, signed agreement ID, and payment reference into a structured email dispatched to `rahulgupt1231@gmail.com`.
-  - Includes one-click WhatsApp notification and copyable pitch summary.
+- **Step 4: Bank-Grade & 100% Free Payment Gateway:**
+  - **Zero Processing Fees (0% Surcharge for Client)**.
+  - 256-Bit SSL End-to-End Encryption & PCI-DSS Level 1 Compliance.
+  - **International Clients:** Strictly **Credit / Debit Cards (Stripe 3D-Secure 2.0)** & **Global QR Code (Wise / Stripe Pay)**.
+  - **Indian Clients:** All modes available: **UPI Instant Pay (QR Code / Apps)**, **Domestic Cards**, and **Net Banking**.
+- **Step 5: Digital Tax Invoice & Direct Inbox Dispatch:**
+  - Generates bank-grade Tax Invoice with Transaction ID, Date, Stamp, Client Profile Photo, and Verified ID reference.
+  - Packages complete pitch, KYC details, agreement deed, and payment receipt into a structured email dispatched to **`rahulgupt1231@gmail.com`**.
+  - Instant WhatsApp notification and copy summary backup.
 
 ### 4. 📚 Catalog
-- **Three Core Service Pillars:**
-  - *Pillar 01:* Full-Stack Web Applications & Custom Portals
-  - *Pillar 02:* Technical, SEO & Authority Content Writing
-  - *Pillar 03:* The "Zero-Friction Launch" Bundle (Signature USP)
-- Concrete deliverables, technology badges, transparent price estimates, and "Select & Pitch This Service" buttons.
+- Three Core Service Pillars (Web Apps, Content Writing, Turnkey Launch Bundle).
+- Transparent price estimates, deliverables, and "Select & Pitch This Service" buttons.
 
 ### 5. 📬 Contact
-- **Studio Summary:** 2–4 hour guaranteed response time, Patna/Remote availability, direct emails (`rahulgupt1231@gmail.com` / `vruchika02@gmail.com`).
-- **Direct Query Form:** Send general inquiries, architecture questions, or collaboration requests directly to Rahul's inbox with WhatsApp backup.
+- Studio communication summary: 2–4 hour response guarantee, Patna/Remote availability, direct emails (`rahulgupt1231@gmail.com` / `vruchika02@gmail.com`).
+- Direct query form with instant email preparation and WhatsApp backup.
 
 ---
 
@@ -66,7 +71,4 @@ npm run dev
 
 # Compile production build
 npm run build
-
-# Preview build locally
-npm run preview
 ```

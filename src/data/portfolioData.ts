@@ -8,7 +8,7 @@ export const foundersData: Founder[] = [
     specialization: 'Full-Stack Architecture, Database Systems & Tech Writing',
     degree: 'B.Sc./B.S. in Computer Science & Data Analytics',
     institution: 'Indian Institute of Technology (IIT) Patna',
-    gradYear: '2023 – 2027',
+    gradYear: '2025 – 2028',
     experienceSummary:
       'High-performance full-stack engineer with hands-on production experience in mission-critical government portal architectures and enterprise systems. Directly engineered production REST APIs, role-based workflows, and database layers at NeGD, MeitY, Govt. of India and consumer web features at HCL GUVI.',
     verifiedBadges: [
@@ -73,9 +73,9 @@ export const foundersData: Founder[] = [
     specialization: 'UI/UX Wireframing, Web Layouts & Strategic Copywriting',
     degree: 'B.Tech in Electrical Engineering',
     institution: 'Birla Institute of Technology (BIT) Mesra',
-    gradYear: 'Engineering Graduate',
+    gradYear: 'Engineering Student',
     experienceSummary:
-      'Engineering-trained designer and content strategist. Bridges complex technical logic with clean visual hierarchy and high-converting storytelling. Specializes in turning complex product features into intuitive user journeys and clear business copy.',
+      'Engineering student at BIT Mesra and creative content strategist. Bridges complex technical logic with clean visual hierarchy and high-converting storytelling. Specializes in turning complex product features into intuitive user journeys and clear business copy.',
     verifiedBadges: [
       {
         title: 'Engineering Pedigree',

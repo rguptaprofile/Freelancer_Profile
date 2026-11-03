@@ -53,27 +53,34 @@ export interface ServicePillar {
 }
 
 export interface ProjectPitchData {
+  clientJurisdiction: 'domestic' | 'international';
   clientName: string;
   companyName: string;
   companyType: string;
   clientEmail: string;
   clientPhone: string;
+  registeredAddress: string;
+  identityType: string;
+  identityNumber: string;
+  identityDocName?: string;
+  profilePhotoUrl?: string;
   serviceType: string;
   projectBudget: string;
   projectTimeline: string;
   projectDescription: string;
-  keyRequirements: string[];
   signatoryName: string;
   signatoryTitle: string;
   agreedToBond: boolean;
   bondSignedDate: string;
   agreementId: string;
+  currency: 'INR' | 'USD';
   paymentPlan: {
     advancePercentage: number;
     midPercentage: number;
     finalPercentage: number;
     advanceAmount: number;
     totalAmount: number;
+    currencySymbol: string;
   };
 }
 
@@ -84,9 +91,15 @@ export interface PaymentReceipt {
   payerName: string;
   payerEmail: string;
   companyName: string;
+  clientJurisdiction: 'domestic' | 'international';
   amountPaid: number;
   totalAmount: number;
+  currency: 'INR' | 'USD';
+  currencySymbol: string;
   milestoneDescription: string;
   paymentMethod: string;
+  identityVerified: boolean;
+  identityReference: string;
+  profilePhotoThumbnail?: string;
   status: 'SUCCESS' | 'PENDING';
 }

@@ -14,9 +14,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Col 1: Studio Identity */}
           <div className="space-y-3 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <span className="font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-base">
-                &lt;Rahul &amp; Jyoti Studio/&gt;
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-400 p-[1px] flex items-center justify-center">
+                <div className="w-full h-full bg-[#0B0F19] rounded-[7px] flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5 text-cyan-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16" />
+                  </svg>
+                </div>
+              </div>
+              <span className="font-extrabold text-white tracking-tight text-sm">
+                Rahul &amp; Jyoti <span className="text-cyan-400 font-mono text-xs">STUDIO</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">

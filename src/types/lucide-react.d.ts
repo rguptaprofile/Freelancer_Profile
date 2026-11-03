@@ -65,6 +65,11 @@ declare module 'lucide-react' {
   export const DollarSign: LucideIcon;
   export const ChevronRight: LucideIcon;
   export const MapPin: LucideIcon;
+  export const Globe: LucideIcon;
+  export const Upload: LucideIcon;
+  export const Lock: LucideIcon;
+  export const BadgeCheck: LucideIcon;
+  export const Smartphone: LucideIcon;
 
   const icons: Record<string, LucideIcon>;
   export default icons;

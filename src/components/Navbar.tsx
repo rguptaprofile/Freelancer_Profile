@@ -30,27 +30,43 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
           {/* Logo */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 text-left group"
+            className="flex items-center gap-3.5 text-left group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-500 p-[1px] shadow-glow-blue transition-transform duration-300 group-hover:scale-105">
-              <div className="w-full h-full bg-[#0E131F] rounded-[11px] flex items-center justify-center">
-                <span className="font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-sm">
-                  &lt;R&amp;J/&gt;
-                </span>
+            {/* Custom SVG Tech Monogram Emblem */}
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-[1.5px] shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-105 shrink-0">
+              <div className="w-full h-full bg-[#0B0F19] rounded-[10px] flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 to-transparent pointer-events-none" />
+                <svg
+                  className="w-5 h-5 text-cyan-300 relative z-10 transition-transform duration-300 group-hover:scale-110"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 8l-4 4 4 4" />
+                  <path d="M17 8l4 4-4 4" />
+                  <path d="M14 4l-4 16" stroke="#38BDF8" />
+                </svg>
               </div>
             </div>
-            <div>
+
+            {/* Brand Title & Pedigree Typography */}
+            <div className="flex flex-col text-left">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-white tracking-tight text-base sm:text-lg">
-                  Rahul <span className="text-blue-400 font-mono">&amp;</span> Jyoti
+                <span className="font-extrabold text-white tracking-tight text-base sm:text-lg group-hover:text-cyan-200 transition-colors">
+                  Rahul &amp; Jyoti
                 </span>
-                <span className="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                  Studio
+                <span className="px-2 py-0.5 text-[9px] font-mono font-bold tracking-widest uppercase rounded-md bg-gradient-to-r from-blue-500/15 to-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm">
+                  STUDIO
                 </span>
               </div>
-              <span className="text-[11px] text-slate-400 font-mono hidden sm:inline-block">
-                IIT Patna &bull; BIT Mesra
-              </span>
+              <div className="flex items-center gap-2 text-[11px] font-mono leading-none pt-1">
+                <span className="text-blue-400 font-medium">IIT Patna</span>
+                <span className="text-slate-600">&bull;</span>
+                <span className="text-amber-400 font-medium">BIT Mesra</span>
+              </div>
             </div>
           </button>
 
