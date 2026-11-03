@@ -25,8 +25,6 @@ declare module 'lucide-react' {
   export const Sparkles: LucideIcon;
   export const Terminal: LucideIcon;
   export const ExternalLink: LucideIcon;
-  export const Github: LucideIcon;
-  export const Linkedin: LucideIcon;
   export const Mail: LucideIcon;
   export const Eye: LucideIcon;
   export const EyeOff: LucideIcon;
@@ -35,6 +33,7 @@ declare module 'lucide-react' {
   export const Clock: LucideIcon;
   export const Layers: LucideIcon;
   export const FileText: LucideIcon;
+  export const FileSignature: LucideIcon;
   export const Copy: LucideIcon;
   export const Menu: LucideIcon;
   export const X: LucideIcon;
@@ -44,6 +43,7 @@ declare module 'lucide-react' {
   export const GitCommit: LucideIcon;
   export const GitPullRequest: LucideIcon;
   export const UserCheck: LucideIcon;
+  export const User: LucideIcon;
   export const Award: LucideIcon;
   export const GraduationCap: LucideIcon;
   export const Building2: LucideIcon;
@@ -56,6 +56,15 @@ declare module 'lucide-react' {
   export const Heart: LucideIcon;
   export const ClipboardCheck: LucideIcon;
   export const Layout: LucideIcon;
+  export const ZoomIn: LucideIcon;
+  export const ZoomOut: LucideIcon;
+  export const Maximize2: LucideIcon;
+  export const Briefcase: LucideIcon;
+  export const CreditCard: LucideIcon;
+  export const QrCode: LucideIcon;
+  export const DollarSign: LucideIcon;
+  export const ChevronRight: LucideIcon;
+  export const MapPin: LucideIcon;
 
   const icons: Record<string, LucideIcon>;
   export default icons;

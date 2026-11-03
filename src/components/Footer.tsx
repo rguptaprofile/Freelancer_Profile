@@ -1,13 +1,12 @@
 import React from 'react';
-import { ShieldCheck, Heart, ExternalLink, Terminal, BookOpen, Mail } from 'lucide-react';
+import { ShieldCheck, ExternalLink, Mail } from 'lucide-react';
 import { LinkedInIcon, GitHubIcon, LeetCodeIcon, QuoraIcon } from './BrandIcons';
 
 interface FooterProps {
-  onOpenRateCard: () => void;
-  onOpenEstimator: () => void;
+  onNavigate: (sectionId: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenRateCard, onOpenEstimator }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="border-t border-slate-800 bg-[#06080E] text-slate-400 text-xs py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,43 +20,65 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRateCard, onOpenEstimator 
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              A specialized two-partner studio by Rahul Raj (IIT Patna) and Jyoti Verma (BIT Mesra).
-              Production-grade code and authority content with zero agency fluff.
+              Full-Stack Engineering &amp; Strategic Content Studio by Rahul Raj (IIT Patna) and Jyoti Verma (BIT Mesra).
+              Protected by a binding 40%-10%-50% phased milestone agreement.
             </p>
             <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-400">
               <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-              <span>Zero Fake Testimonials Guaranteed</span>
+              <span>Zero Fake Promises &bull; Direct Execution</span>
             </div>
           </div>
 
-          {/* Col 2: Fast Navigation */}
+          {/* Col 2: Navigation to the 5 Sections */}
           <div className="space-y-2">
             <h4 className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold mb-3">
               Studio Navigation
             </h4>
-            <ul className="space-y-1.5 text-xs">
+            <ul className="space-y-2 text-xs">
               <li>
-                <a href="#pledge" className="hover:text-white transition-colors">The Anti-Hype Trust Pledge</a>
+                <button
+                  onClick={() => onNavigate('home')}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  Home (Overview &amp; Ratings)
+                </button>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">3-Pillar Service Catalog</a>
+                <button
+                  onClick={() => onNavigate('about')}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  About (Rahul &amp; Jyoti Profiles)
+                </button>
               </li>
               <li>
-                <a href="#work" className="hover:text-white transition-colors">Full-Stack Builds &amp; Code</a>
+                <button
+                  onClick={() => onNavigate('work')}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  Work (Project Pitch, Bond &amp; Hire)
+                </button>
               </li>
               <li>
-                <a href="#editorial" className="hover:text-white transition-colors">Quora &amp; Editorial Insights</a>
+                <button
+                  onClick={() => onNavigate('catalog')}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  Catalog (Services &amp; Pricing)
+                </button>
               </li>
               <li>
-                <a href="#workflow" className="hover:text-white transition-colors">4-Step Transparent Workflow</a>
-              </li>
-              <li>
-                <a href="#founders" className="hover:text-white transition-colors">Meet the Co-Founders</a>
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  Contact (Direct Inbox &amp; Form)
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Direct Verified Profiles */}
+          {/* Col 3: Public Profiles & Verification */}
           <div className="space-y-2">
             <h4 className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold mb-3">
               Direct Verification
@@ -94,7 +115,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRateCard, onOpenEstimator 
                   rel="noopener noreferrer"
                   className="hover:text-amber-300 flex items-center gap-1.5 transition-colors"
                 >
-                  <Terminal className="w-3.5 h-3.5 text-amber-400" />
+                  <LeetCodeIcon className="w-3.5 h-3.5 text-amber-400" />
                   <span>Rahul&apos;s LeetCode (85+ Solved)</span>
                   <ExternalLink className="w-3 h-3 text-slate-600" />
                 </a>
@@ -106,7 +127,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRateCard, onOpenEstimator 
                   rel="noopener noreferrer"
                   className="hover:text-red-300 flex items-center gap-1.5 transition-colors"
                 >
-                  <BookOpen className="w-3.5 h-3.5 text-red-400" />
+                  <QuoraIcon className="w-3.5 h-3.5 text-red-400" />
                   <span>Rahul&apos;s Quora Editorial Answers</span>
                   <ExternalLink className="w-3 h-3 text-slate-600" />
                 </a>
@@ -114,23 +135,24 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRateCard, onOpenEstimator 
             </ul>
           </div>
 
-          {/* Col 4: Quick Action Actions */}
+          {/* Col 4: Quick Action Box */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold mb-3">
-              Client Tools
+              Initiate Project
             </h4>
             <button
-              onClick={onOpenEstimator}
-              className="w-full py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
+              onClick={() => onNavigate('work')}
+              className="w-full py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-md shadow-blue-500/20"
             >
-              <span>Instant Scope Estimator</span>
+              <span>Pitch Scope &amp; Sign Bond</span>
             </button>
-            <button
-              onClick={onOpenRateCard}
-              className="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors border border-slate-700"
+            <a
+              href="mailto:contact@rahulraj.dev"
+              className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors border border-slate-700"
             >
-              <span>View Pitch Deck &amp; Rate Card</span>
-            </button>
+              <Mail className="w-3.5 h-3.5 text-cyan-400" />
+              <span>contact@rahulraj.dev</span>
+            </a>
           </div>
         </div>
 
@@ -140,7 +162,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRateCard, onOpenEstimator 
             &copy; {new Date().getFullYear()} Rahul Raj &amp; Jyoti Verma. All Rights Reserved.
           </div>
           <div>
-            IIT Patna &bull; BIT Mesra Patna &bull; Verified Production Code &bull; Zero Agency Fluff
+            IIT Patna &bull; BIT Mesra &bull; 40%-10%-50% Phased Milestone Agreement
           </div>
         </div>
       </div>

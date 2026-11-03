@@ -1,101 +1,117 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { PedigreeBar } from './components/PedigreeBar';
-import { TrustPledge } from './components/TrustPledge';
-import { ServiceCatalog } from './components/ServiceCatalog';
-import { WorkShowcase } from './components/WorkShowcase';
-import { WorkflowSection } from './components/WorkflowSection';
-import { CoFoundersSection } from './components/CoFoundersSection';
-import { ScopeEstimatorSection } from './components/ScopeEstimatorSection';
+import { HomeSection } from './components/HomeSection';
+import { AboutSection } from './components/AboutSection';
+import { WorkSection } from './components/WorkSection';
+import { CatalogSection } from './components/CatalogSection';
+import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ArticleModal } from './components/ArticleModal';
-import { ArchitectureModal } from './components/ArchitectureModal';
-import { CapabilitiesRateCardModal } from './components/CapabilitiesRateCardModal';
-import { ProjectItem, EditorialArticle } from './types';
+import { PhotoLightboxModal } from './components/PhotoLightboxModal';
 
 export function App() {
-  const [selectedArticle, setSelectedArticle] = useState<EditorialArticle | null>(null);
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [isRateCardOpen, setIsRateCardOpen] = useState<boolean>(false);
-  const [estimatorService, setEstimatorService] = useState<string>('bundle');
+  const [activeSection, setActiveSection] = useState<string>('home');
+  const [workServicePrefill, setWorkServicePrefill] = useState<string>(
+    'Full-Stack Web Application & Custom Portal'
+  );
 
-  const handleSelectServiceFromCatalog = (serviceId: string) => {
-    setEstimatorService(serviceId);
-    const estimatorEl = document.getElementById('estimator');
-    if (estimatorEl) {
-      estimatorEl.scrollIntoView({ behavior: 'smooth' });
+  // Photo Lightbox Modal State
+  const [lightboxData, setLightboxData] = useState<{
+    isOpen: boolean;
+    imageSrc: string;
+    name: string;
+    title: string;
+  }>({
+    isOpen: false,
+    imageSrc: '',
+    name: '',
+    title: '',
+  });
+
+  const handleOpenPhoto = (imageSrc: string, name: string, title: string) => {
+    setLightboxData({
+      isOpen: true,
+      imageSrc,
+      name,
+      title,
+    });
+  };
+
+  const handleClosePhoto = () => {
+    setLightboxData((prev) => ({ ...prev, isOpen: false }));
+  };
+
+  const handleNavigate = (sectionId: string) => {
+    setActiveSection(sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  const scrollToEstimator = () => {
-    const estimatorEl = document.getElementById('estimator');
-    if (estimatorEl) {
-      estimatorEl.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleSelectServiceFromCatalog = (serviceTitle: string) => {
+    setWorkServicePrefill(serviceTitle);
+    handleNavigate('work');
   };
+
+  // Scroll listener to sync active section
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'work', 'catalog', 'contact'];
+      const scrollPos = window.scrollY + 200;
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0A0D14] text-slate-100 flex flex-col font-sans selection:bg-blue-600/30 selection:text-blue-200">
-      {/* Sticky Header */}
+      {/* Top Navbar */}
       <Navbar
-        onOpenEstimator={scrollToEstimator}
-        onOpenRateCard={() => setIsRateCardOpen(true)}
+        activeSection={activeSection}
+        onNavigate={handleNavigate}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Flow: Strictly the 5 Sections */}
       <main className="flex-1">
-        {/* Section 1: Hero Section Above The Fold */}
-        <Hero
-          onOpenEstimator={scrollToEstimator}
-          onOpenRateCard={() => setIsRateCardOpen(true)}
-        />
+        {/* 1. HOME SECTION: Full overview, ratings, guarantees */}
+        <HomeSection onNavigate={handleNavigate} />
 
-        {/* Section 2: Verified Pedigree & Experience Bar */}
-        <PedigreeBar />
+        {/* 2. ABOUT SECTION: Rahul & Jyoti profiles, full photo with open modal, NeGD/HCL, BIT Mesra, public profiles */}
+        <AboutSection onOpenPhoto={handleOpenPhoto} />
 
-        {/* Section 1 Philosophy: The Anti-Hype Trust Pledge */}
-        <TrustPledge />
+        {/* 3. WORK SECTION: Pitch scope (startups, banks, shops), 40%-10%-50% Bond Paper, Payment Integration, Direct Mail */}
+        <WorkSection initialServiceId={workServicePrefill} />
 
-        {/* Section 3: Dual-Engine Service Catalog (3 Pillars) */}
-        <ServiceCatalog onSelectService={handleSelectServiceFromCatalog} />
+        {/* 4. CATALOG SECTION: Dual-engine service catalog, deliverables, pricing & hire CTA */}
+        <CatalogSection onSelectService={handleSelectServiceFromCatalog} />
 
-        {/* Section 3/4/5: Dual Interactive Work Showcase (Tab A Builds & Tab B Quora Editorial) */}
-        <WorkShowcase
-          onSelectProject={(project) => setSelectedProject(project)}
-          onSelectArticle={(article) => setSelectedArticle(article)}
-        />
-
-        {/* Section 4: The 4-Step Transparent Workflow */}
-        <WorkflowSection />
-
-        {/* Section 5: Meet The Co-Founders (Authentic Bios & Links) */}
-        <CoFoundersSection />
-
-        {/* Section 6: Frictionless Inquiry & Scope Estimator */}
-        <ScopeEstimatorSection initialService={estimatorService} />
+        {/* 5. CONTACT SECTION: Studio summary & query form directly to inbox */}
+        <ContactSection />
       </main>
 
       {/* Footer */}
-      <Footer
-        onOpenRateCard={() => setIsRateCardOpen(true)}
-        onOpenEstimator={scrollToEstimator}
-      />
+      <Footer onNavigate={handleNavigate} />
 
-      {/* Interactive Modals */}
-      <ArticleModal
-        article={selectedArticle}
-        onClose={() => setSelectedArticle(null)}
-      />
-
-      <ArchitectureModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-
-      <CapabilitiesRateCardModal
-        isOpen={isRateCardOpen}
-        onClose={() => setIsRateCardOpen(false)}
+      {/* Full Photo Lightbox Modal */}
+      <PhotoLightboxModal
+        isOpen={lightboxData.isOpen}
+        onClose={handleClosePhoto}
+        imageSrc={lightboxData.imageSrc}
+        name={lightboxData.name}
+        title={lightboxData.title}
       />
     </div>
   );

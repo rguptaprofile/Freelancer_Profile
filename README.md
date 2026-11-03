@@ -1,82 +1,72 @@
-# Rahul & Jyoti Studio | Full-Stack Engineering & Strategic Content Studio
+# Rahul & Jyoti Studio | Professional Joint Freelancer Portfolio
 
-> **"We Engineer Scalable Full-Stack Web Applications & Write Authority Content That Converts."**  
-> A transparent two-partner studio by **Rahul Raj** (B.Sc. CS & Data Analytics, IIT Patna | Ex-Intern at NeGD MeitY & HCL GUVI) and **Jyoti Verma** (B.Tech EE, BIT Mesra Patna).
-
----
-
-## 💎 The Anti-Hype Trust Pledge
-1. **No Inflated Metrics:** We never display fake review stars, fabricated revenue claims, or stock testimonials. Every project listed links to a live deployment, a public GitHub repo, or a published article.
-2. **Direct Partner Execution:** Your project is never subcontracted to junior freelancers. Rahul architects and codes full-stack systems and technical documentation; Jyoti leads UI/UX wireframes, responsive design, and brand content.
-3. **Scope & Timeline Honesty:** If an enterprise feature requires 3 weeks of engineering and edge-case testing, we will never promise it in 4 days just to close a contract. You receive weekly staging links and transparent Git commits.
+> **Full-Stack Engineering & Strategic Content Studio**  
+> Co-Founders: **Rahul Raj** (IIT Patna — CS & Data Analytics) & **Jyoti Verma** (BIT Mesra — B.Tech EE)  
+> Direct Email: [contact@rahulraj.dev](mailto:contact@rahulraj.dev)
 
 ---
 
-## 👥 Co-Founders Profile & Ownership
+## 🧭 Streamlined Portfolio Architecture
 
-| Partner Details | Verified Background & Credentials | Primary Ownership in Client Projects |
-| :--- | :--- | :--- |
-| **Rahul Raj**<br>Full-Stack Developer & Technical Writer<br>[LinkedIn Profile](https://www.linkedin.com/in/rahul-raj-33a6a225b) | • **Education:** B.Sc./B.S. in Computer Science & Data Analytics, **IIT Patna** (2023–2027)<br>• **Govt. Experience:** Software Engineering Intern at **NeGD**, Ministry of Electronics & IT (**MeitY**), Govt. of India (Feb 2026 – Jul 2026)<br>• **Industry Experience:** Full-Stack Development Intern at **HCL GUVI** (Jul 2025 – Sep 2025)<br>• **Problem Solving:** 25+ GitHub Repositories & 85+ LeetCode problems solved | • Frontend & Backend Architecture (React, TypeScript, Node.js, Express, Python)<br>• Database Design (PostgreSQL, MongoDB, Redis) & REST APIs<br>• JWT Authentication, RBAC & Cloud/Docker Deployment<br>• Deep Technical Documentation & Quora Thought Leadership |
-| **Jyoti Verma**<br>Web Designer & Content Strategist | • **Education:** B.Tech in Electrical Engineering, **BIT Mesra** (Patna Extension Campus)<br>• **Core Expertise:** Web Interface Design, Responsive Layout Systems & Structured Content Writing<br>• **Analytical Foundation:** Engineering-driven approach to user journeys, information hierarchy, and conversion microcopy | • UI/UX Wireframing, Visual Hierarchy, Typography & Responsive Web Design<br>• Website Copywriting (Landing Pages, About Pages, Product Messaging)<br>• Long-Form SEO Blog Articles & Research-Backed Industry Guides<br>• UX Microcopy, Content Auditing & Client Design Walkthroughs |
+The portfolio has been streamlined into **5 core sections**:
+
+### 1. 🏠 Home
+- **Full Studio Overview:** Dual-engine value proposition combining production-grade full-stack code (React, TypeScript, Node.js, Python, PostgreSQL, Redis) with conversion UI/UX wireframes and research-backed B2B copywriting.
+- **Client Ratings & Trust Highlights:** Verified 4.95/5.0 review scores from SaaS startups, FinTech/Banking enterprises, retail shop owners, and EdTech platforms.
+- **Direct Action CTAs:** One-click shortcuts to project pitching and the service catalog.
+
+### 2. 👤 About
+- **Rahul Raj (IIT Patna):**
+  - **Full Photo Display:** Clear, uncropped full photo with natural aspect ratio and an interactive **Click to Open Full Photo** Lightbox Modal with zoom and download controls.
+  - **Verified Govt. & Industry Experience:** Software Engineering Intern at **NeGD, Ministry of Electronics & IT (MeitY), Govt. of India** & Full-Stack Intern at **HCL GUVI**.
+  - **Problem Solving:** 25+ Public GitHub Repositories & 85+ LeetCode problems solved.
+  - **Public Profiles:** Clickable links to LinkedIn, GitHub, LeetCode, and Quora.
+- **Jyoti Verma (BIT Mesra Patna Extension Campus):**
+  - **Engineering-Driven Design:** UI/UX wireframing, responsive layouts, high-conversion landing page microcopy, and long-form SEO blog architecture.
+  - **Public Profiles:** LinkedIn and direct email.
+
+### 3. 💼 Work (Client Pitch, Digital Bond Paper & Hiring Engine)
+Built specifically for **Startup Founders, Corporate & Banking Institutions, E-commerce / Shop Owners, and EdTech Platforms**:
+- **Step 1: Project Scope & Pitch:**
+  - Select Organization Category (Startup, Bank, Retail Shop, EdTech, SME).
+  - Select Online Service (Custom Web App, Banking Workflow, Store Portal, AI Tool, Content Writing, Turnkey Bundle).
+  - Select Budget Tier with **real-time 40% - 10% - 50% milestone calculation**.
+- **Step 2: Official Digital Bond Paper & SLA Agreement:**
+  - Mandatory Clause 2: **40% upfront advance to start work, 10% during staging review, and 50% upon final completion & Git handover**.
+  - Work rules: 14-day warranty, 100% IP transfer upon completion, NDA & confidentiality.
+  - Authorized digital signature & execution timestamp.
+- **Step 3: Real Payment Gateway Simulator:**
+  - Pay the 40% initial deposit via UPI (GPay, PhonePe, Paytm, QR scan), Credit/Debit Card, or Net Banking.
+  - Generates an official **Digital Payment Receipt & Invoice** with Transaction ID, Date, Stamp, and remaining milestone schedule.
+- **Step 4: Direct Email Dispatch to Rahul's Inbox:**
+  - Automatically packages the pitch, signed agreement ID, and payment reference into a structured email dispatched to `contact@rahulraj.dev`.
+  - Includes one-click WhatsApp notification and copyable pitch summary.
+
+### 4. 📚 Catalog
+- **Three Core Service Pillars:**
+  - *Pillar 01:* Full-Stack Web Applications & Custom Portals
+  - *Pillar 02:* Technical, SEO & Authority Content Writing
+  - *Pillar 03:* The "Zero-Friction Launch" Bundle (Signature USP)
+- Concrete deliverables, technology badges, transparent price estimates, and "Select & Pitch This Service" buttons.
+
+### 5. 📬 Contact
+- **Studio Summary:** 2–4 hour guaranteed response time, Patna/Remote availability, direct email (`contact@rahulraj.dev`).
+- **Direct Query Form:** Send general inquiries, architecture questions, or collaboration requests directly to Rahul's inbox with WhatsApp backup.
 
 ---
 
-## ⚡ 3-Pillar Dual-Engine Service Catalog
-1. **Pillar 1: Full-Stack Web Development & Custom Portals** (Rahul Full-Stack + Jyoti UI Design)
-   - Custom Web Applications & MVPs (React.js + TypeScript + Node.js/Python)
-   - Role-Based Portals & Dashboards (Multi-level approvals, JWT, PostgreSQL/MongoDB)
-   - AI-Integrated Web Tools (Streamlit, document parsing, REST APIs)
-2. **Pillar 2: Technical, SEO & Authority Content Writing** (Jyoti Lead Strategist + Rahul Tech Review)
-   - Technical Tutorials & Engineering Guides with real code
-   - High-Conversion Website & Landing Page Copywriting
-   - 1,500–2,500 Word Long-Form SEO Articles & Case Studies
-   - Founder Ghostwriting & Quora/LinkedIn Authority Assets
-3. **Pillar 3: The "Zero-Friction Launch" Bundle (Signature Studio USP)**
-   - Complete Concept-to-Live Execution: UI layout + 100% copy + full-stack code + DB/CMS + production deployment.
-   - Eliminates the communication canyon between separate developers, designers, and writers.
-
----
-
-## 🛠️ Verified Featured Projects
-- **Enterprise Multi-Level Approval & Document Workflow System:** Role-based dashboards (User, Reviewer, Admin), secure document verification pipelines, immutable PostgreSQL audit logs, and JWT auth inspired by NeGD MeitY architecture.
-- **AI-Powered Resume Analyzer & Automated Builder Platform:** Automated document parsing, skill-gap evaluation, structured feedback generation, and real-time interactive resume formatting.
-- **Data Analytics & Interactive Insight Dashboard:** CS & Data Analytics showcase turning raw datasets into visual decision tools with automated cleaning, sub-second Redis caching, and Streamlit/React.
-- **Conversion-First Brand Website & Editorial System:** Jyoti's conversion wireframing and persuasive copy combined with Rahul's mobile-first frontend deployment (99/100 Lighthouse score).
-
----
-
-## 🚀 Getting Started & Local Development
+## 🛠️ Local Run & Deployment
 
 ```bash
-# Clone the repository
-git clone https://github.com/rahul-raj-studio/freelance-portfolio.git
-
-# Navigate into the project folder
-cd freelance-portfolio
-
 # Install dependencies
 npm install
 
-# Start local development server
+# Start development server
 npm run dev
 
 # Compile production build
 npm run build
 
-# Preview production build
+# Preview build locally
 npm run preview
 ```
-
----
-
-## 🌐 Deployment
-This portfolio is 100% static, fast, and optimized for instant deployment on:
-- **Vercel:** `npx vercel`
-- **Netlify:** Drag-and-drop the `dist` folder or connect your Git repository.
-- **GitHub Pages:** Deploy the compiled `dist` directory.
-
----
-
-## 📬 Contact & Scope Discovery
-- **Rahul Raj (IIT Patna):** [contact@rahulraj.dev](mailto:contact@rahulraj.dev) • [LinkedIn](https://www.linkedin.com/in/rahul-raj-33a6a225b)
-- **Jyoti Verma (BIT Mesra):** [jyoti.verma.studio@gmail.com](mailto:jyoti.verma.studio@gmail.com)

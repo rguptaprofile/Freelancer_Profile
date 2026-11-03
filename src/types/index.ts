@@ -21,6 +21,19 @@ export interface Founder {
   quote: string;
 }
 
+export interface ClientReview {
+  id: string;
+  clientName: string;
+  clientTitle: string;
+  company: string;
+  companyType: string;
+  rating: number;
+  date: string;
+  reviewText: string;
+  serviceProvided: string;
+  verified: boolean;
+}
+
 export interface ServicePillar {
   id: string;
   number: string;
@@ -33,60 +46,47 @@ export interface ServicePillar {
     description: string;
     tags: string[];
   }[];
+  priceEstimate?: string;
+  estimatedTimeline?: string;
   whyClientsLoveThis?: string;
   isUSP?: boolean;
 }
 
-export interface ProjectItem {
-  id: string;
-  title: string;
-  category: string;
-  context: string;
-  problem: string;
-  architecture: string[];
-  solution: string;
-  outcomes: string[];
-  techStack: string[];
-  githubUrl?: string;
-  liveDemoUrl?: string;
-  isJoint: boolean;
-  featured: boolean;
-  diagramSnippet?: string;
-}
-
-export interface EditorialArticle {
-  id: string;
-  type: 'quora' | 'technical' | 'ux-copy' | 'research';
-  categoryLabel: string;
-  title: string;
-  subtitle: string;
-  author: 'Rahul Raj' | 'Jyoti Verma' | 'Rahul & Jyoti';
-  authorDetails: string;
-  readTime: string;
-  quoraStats?: {
-    views: string;
-    upvotes: string;
-    shares?: string;
-  };
-  quoraUrl?: string;
-  summary: string;
-  fullContentMarkdown: string;
-  beforeAfterComparison?: {
-    beforeTitle: string;
-    beforeText: string;
-    beforeIssues: string[];
-    afterTitle: string;
-    afterText: string;
-    afterWins: string[];
-    conversionLift: string;
+export interface ProjectPitchData {
+  clientName: string;
+  companyName: string;
+  companyType: string;
+  clientEmail: string;
+  clientPhone: string;
+  serviceType: string;
+  projectBudget: string;
+  projectTimeline: string;
+  projectDescription: string;
+  keyRequirements: string[];
+  signatoryName: string;
+  signatoryTitle: string;
+  agreedToBond: boolean;
+  bondSignedDate: string;
+  agreementId: string;
+  paymentPlan: {
+    advancePercentage: number;
+    midPercentage: number;
+    finalPercentage: number;
+    advanceAmount: number;
+    totalAmount: number;
   };
 }
 
-export interface ScopeCalculation {
-  serviceId: string;
-  serviceName: string;
-  addons: string[];
-  urgency: 'standard' | 'priority';
-  estimatedDays: string;
-  recommendedWorkflow: string;
+export interface PaymentReceipt {
+  receiptId: string;
+  transactionId: string;
+  date: string;
+  payerName: string;
+  payerEmail: string;
+  companyName: string;
+  amountPaid: number;
+  totalAmount: number;
+  milestoneDescription: string;
+  paymentMethod: string;
+  status: 'SUCCESS' | 'PENDING';
 }
