@@ -24,7 +24,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ onNavigate }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-xs font-mono font-medium text-slate-300">
-              Two-Partner Studio &bull; Direct Execution by Rahul Raj (IIT Patna) &amp; Jyoti Kumari (BIT Mesra)
+              Freelancer Duo Profile &bull; Direct Execution by Rahul Raj (IIT Patna) &amp; Jyoti Kumari (BIT Mesra)
             </span>
           </div>
 

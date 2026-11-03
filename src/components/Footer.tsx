@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <span className="font-extrabold text-white tracking-tight text-sm">
-                Rahul &amp; Jyoti <span className="text-cyan-400 font-mono text-xs">STUDIO</span>
+                Rahul &amp; Jyoti <span className="text-cyan-400 font-mono text-[11px] px-2 py-0.5 rounded bg-blue-500/15 border border-cyan-500/30 ml-1">Freelancer Duo Profile</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">

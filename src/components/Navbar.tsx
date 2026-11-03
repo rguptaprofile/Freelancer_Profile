@@ -58,8 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
                 <span className="font-extrabold text-white tracking-tight text-base sm:text-lg group-hover:text-cyan-200 transition-colors">
                   Rahul &amp; Jyoti
                 </span>
-                <span className="px-2 py-0.5 text-[9px] font-mono font-bold tracking-widest uppercase rounded-md bg-gradient-to-r from-blue-500/15 to-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm">
-                  STUDIO
+                <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold tracking-wide rounded-md bg-gradient-to-r from-blue-500/15 to-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm whitespace-nowrap">
+                  Freelancer Duo Profile
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] font-mono leading-none pt-1">
