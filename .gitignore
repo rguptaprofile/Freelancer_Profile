@@ -1,21 +1,53 @@
-# Environment and sensitive credential files (STRICTLY NEVER COMMIT)
+# ==============================================================================
+# STRICT SECURITY CONFIGURATION: SECRETS & ENVIRONMENT FILES
+# (NEVER COMMIT OR PUSH TO GITHUB)
+# ==============================================================================
+
+# All environment variable files across root and all subdirectories
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 .env.*
-!.env.example
 *.env
+**/.env
+**/.env.*
+**/*.env
+server/.env
+server/.env.*
+
+# Explicitly allow ONLY sanitized documentation templates
+!.env.example
+!server/.env.example
+!**/.env.example
+
+# Private cryptographic keys, certificates & tokens
 *.pem
 *.key
 *.cert
 *.crt
+*.pfx
+*.p12
+*.pub
+id_rsa*
+id_ed25519*
+
+# Sensitive credentials & tokens files
 credentials.json
 secrets.json
+service-account*.json
+token.json
+oauth*.json
+*.keystore
+*secret*.json
+*credential*.json
 
-# Logs
-logs
+# Local overrides & database files
+*.local
+*.sqlite
+*.sqlite3
+*.db
+
+# ==============================================================================
+# LOGS & SYSTEM
+# ==============================================================================
 logs
 *.log
 npm-debug.log*
@@ -24,16 +56,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# ==============================================================================
+# DEPENDENCIES & BUILD OUTPUTS
+# ==============================================================================
 node_modules
+server/node_modules
 dist
 dist-ssr
-*.local
 
-# Editor directories and files
+# ==============================================================================
+# IDE & EDITOR FILES
+# ==============================================================================
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
