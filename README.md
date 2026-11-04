@@ -40,11 +40,15 @@ Built specifically for **Startup Founders, Corporate & Banking Institutions, E-c
   - Binding 40%-10%-50% phased payment terms: **40% upfront advance to begin work, 10% upon live staging review, and 50% upon final delivery & Git handover**.
   - Work rules: 14-day warranty, 100% IP transfer upon completion, NDA & confidentiality.
   - Authorized digital signature & execution timestamp.
-- **Step 4: Bank-Grade & 100% Free Payment Gateway:**
-  - **Zero Processing Fees (0% Surcharge for Client)**.
-  - 256-Bit SSL End-to-End Encryption & PCI-DSS Level 1 Compliance.
-  - **International Clients:** Strictly **Credit / Debit Cards (Stripe 3D-Secure 2.0)** & **Global QR Code (Wise / Stripe Pay)**.
-  - **Indian Clients:** All modes available: **UPI Instant Pay (QR Code / Apps)**, **Domestic Cards**, and **Net Banking**.
+- **Step 4: Dedicated 256-Bit SSL Payment Gateway (Direct Account Settlement):**
+  - **Opens on a dedicated full-screen checkout terminal (`/#payment`)** with distraction-free bank-grade security protocols.
+  - **Zero Processing Fees (0% Surcharge for Client)**: Direct settlement to Rahul Raj's account with no middleman escrow risk.
+  - **100% Real Payment Channels:**
+    - **Real Dynamic UPI QR & 1-Click Intent:** Generates official standard NPCI QR code dynamically linked to the payee UPI ID configured in environment variables (`VITE_PAYEE_UPI_ID`) with pre-filled exact 40% advance deposit. 1-click launch for GPay, PhonePe, Paytm, and BHIM on mobile.
+    - **Razorpay 3D-Secure 2.0 Gateway:** Drop-in official SDK for Indian RuPay/Visa/Mastercard credit & debit cards, plus Net Banking across 50+ Indian banks.
+    - **Corporate Institutional Wire:** Beneficiary, IFSC, and account details for enterprise NEFT/IMPS invoice clearance.
+    - **International USD Channels:** Stripe 3D-Secure 2.0 global cards, PayPal.Me link, and Wise multi-currency wire.
+  - **Centralized Configuration:** Managed in `src/config/paymentConfig.ts`.
 - **Step 5: Digital Tax Invoice & Direct Inbox Dispatch:**
   - Generates bank-grade Tax Invoice with Transaction ID, Date, Stamp, Client Profile Photo, and Verified ID reference.
   - Packages complete pitch, KYC details, agreement deed, and payment receipt into a structured email dispatched to **`rahulgupt1231@gmail.com`**.

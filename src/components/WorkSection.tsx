@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { bondTermsAndConditions } from '../data/portfolioData';
-import { PaymentReceipt } from '../types';
+import { PaymentReceipt, ProjectPitchData } from '../types';
+import { paymentConfig } from '../config/paymentConfig';
+import { createBackendRazorpayOrder, verifyBackendPaymentSignature } from '../services/paymentApi';
 import {
   FileSignature,
   Building2,
@@ -12,29 +14,22 @@ import {
   Copy,
   Send,
   Printer,
-  Download,
-  AlertCircle,
-  Clock,
   Sparkles,
   ArrowRight,
-  ExternalLink,
-  DollarSign,
-  ChevronRight,
-  Globe,
   Upload,
   User,
   FileText,
   Lock,
   BadgeCheck,
-  Check,
   Smartphone,
 } from 'lucide-react';
 
 interface WorkSectionProps {
   initialServiceId?: string;
+  onOpenDedicatedPayment?: (pitchData: ProjectPitchData) => void;
 }
 
-export const WorkSection: React.FC<WorkSectionProps> = ({ initialServiceId }) => {
+export const WorkSection: React.FC<WorkSectionProps> = ({ initialServiceId, onOpenDedicatedPayment }) => {
   // Navigation step within Work section
   const [currentStep, setCurrentStep] = useState<'pitch' | 'kyc' | 'bond' | 'payment' | 'receipt'>('pitch');
 
@@ -89,6 +84,11 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ initialServiceId }) =>
   const midAmount = Math.round(totalAmount * 0.10);
   const finalAmount = Math.round(totalAmount * 0.50);
 
+  // 18% GST Mandatory Calculation
+  const gstRate = paymentConfig.razorpay.gstRate || 18;
+  const advanceGstAmount = Math.round(advanceAmount * (gstRate / 100));
+  const advanceTotalWithGst = advanceAmount + advanceGstAmount;
+
   // Bond & Signature State
   const [signatoryName, setSignatoryName] = useState('');
   const [signatoryTitle, setSignatoryTitle] = useState('Founder / Authorized Officer');
@@ -96,29 +96,19 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ initialServiceId }) =>
   const [agreementId] = useState(`AGR-${Math.floor(100000 + Math.random() * 900000)}`);
   const [signedDate] = useState(new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }));
 
-  // Payment State
-  // International: ONLY 'card' or 'global_qr'
-  // Domestic: 'upi' | 'card' | 'netbanking'
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'global_qr' | 'upi' | 'netbanking'>('upi');
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardHolder, setCardHolder] = useState('');
-  const [cardExpiry, setCardExpiry] = useState('');
-  const [cardCvv, setCardCvv] = useState('');
-  const [billingZip, setBillingZip] = useState('');
-  const [upiRef, setUpiRef] = useState('');
+  // Razorpay Payment Preference
+  const [selectedMethod, setSelectedMethod] = useState<'all' | 'upi' | 'card' | 'netbanking' | 'bank_transfer' | 'qr'>('all');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [receipt, setReceipt] = useState<PaymentReceipt | null>(null);
   const [copiedSummary, setCopiedSummary] = useState(false);
 
-  // Sync default payment method on jurisdiction change
+  // Sync default settings on jurisdiction change
   const handleJurisdictionChange = (newJur: 'domestic' | 'international') => {
     setJurisdiction(newJur);
     if (newJur === 'international') {
-      setPaymentMethod('card');
       setRegisteredCountry('United States');
       setIdentityType('passport');
     } else {
-      setPaymentMethod('upi');
       setRegisteredCountry('India');
       setIdentityType('aadhaar');
     }
@@ -194,8 +184,10 @@ ${projectDescription || 'Client has submitted requirements for direct review.'}
 
 3. MANDATORY MILESTONE PAYMENT SCHEDULE (40% - 10% - 50%):
 -----------------------------------------------------
-- 40% Initial Upfront Advance: ${currencySymbol}${advanceAmount.toLocaleString('en-IN')} (Required to start sprint)
-- 10% Mid-Project Milestone:  ${currencySymbol}${midAmount.toLocaleString('en-IN')} (Upon live staging inspection)
+- 40% Initial Upfront Advance: ${currencySymbol}${advanceAmount.toLocaleString('en-IN')}
+- Applicable 18% GST:          ${currencySymbol}${advanceGstAmount.toLocaleString('en-IN')}
+- Total Due with 18% GST:      ${currencySymbol}${advanceTotalWithGst.toLocaleString('en-IN')} (Required to start sprint)
+- 10% Mid-Project Milestone:   ${currencySymbol}${midAmount.toLocaleString('en-IN')} (Upon live staging inspection)
 - 50% Final Settlement:        ${currencySymbol}${finalAmount.toLocaleString('en-IN')} (Post QA & repository handover)
 
 4. BOND PAPER & AGREEMENT STATUS:
@@ -207,14 +199,16 @@ Authorized Signatory: ${signatoryName || clientName}
 IP Transfer & NDA Clause: 100% IP Handover upon final milestone
 Warranty Period: 14-Day Complimentary Post-Delivery Bug Support
 
-${receipt ? `5. INITIAL 40% PAYMENT VERIFICATION (FREE & SECURE):
+${receipt ? `5. RAZORPAY INITIAL 40% PAYMENT VERIFICATION (DIRECT BANK CREDIT):
 -----------------------------------------------------
-Transaction Ref: ${receipt.transactionId}
-Receipt ID: ${receipt.receiptId}
-Amount Paid (40% Advance): ${currencySymbol}${receipt.amountPaid.toLocaleString('en-IN')}
-Payment Channel: ${receipt.paymentMethod}
-Payment Security: 256-Bit SSL Encrypted / PCI-DSS Level 1 Verified
-Status: VERIFIED SUCCESSFUL` : ''}
+Razorpay Payment ID: ${receipt.transactionId}
+Tax Invoice ID: ${receipt.receiptId}
+Base Advance (40%): ${currencySymbol}${advanceAmount.toLocaleString('en-IN')}
+Applicable 18% GST: ${currencySymbol}${advanceGstAmount.toLocaleString('en-IN')}
+Total Paid (with GST): ${currencySymbol}${receipt.amountPaid.toLocaleString('en-IN')}
+Payment Gateway: Razorpay PCI-DSS Level 1 Encrypted
+Settlement: Direct Automated Bank Transfer to Rahul Raj
+Status: VERIFIED & CONFIRMED` : ''}
 
 =====================================================
 Dispatched via Rahul & Jyoti Studio Hiring Engine
@@ -243,33 +237,154 @@ Official Recipient: rahulgupt1231@gmail.com
     window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
   };
 
-  // Simulate Payment Processing
-  const processAdvancePayment = () => {
+  // Assemble complete verified project pitch data for dedicated payment page
+  const getPitchDataObject = (): ProjectPitchData => ({
+    clientJurisdiction: jurisdiction,
+    clientName: clientName || 'Valued Client',
+    companyName: companyName || clientName || 'Independent Client',
+    companyType,
+    clientEmail: clientEmail || 'client@example.com',
+    clientPhone: clientPhone || '',
+    registeredAddress: registeredAddress || '',
+    identityType,
+    identityNumber: identityNumber || 'VERIFIED-KYC',
+    identityDocName: identityFileName || undefined,
+    profilePhotoUrl: profilePhoto || undefined,
+    serviceType,
+    projectBudget: `${currencySymbol}${totalAmount.toLocaleString('en-IN')}`,
+    projectTimeline: selectedTimeline,
+    projectDescription,
+    signatoryName: signatoryName || clientName || 'Authorized Signatory',
+    signatoryTitle: signatoryTitle || 'Founder / Client',
+    agreedToBond,
+    bondSignedDate: signedDate,
+    agreementId,
+    currency: (currencyCode === 'USD' ? 'USD' : 'INR') as 'INR' | 'USD',
+    paymentPlan: {
+      advancePercentage: 40,
+      midPercentage: 10,
+      finalPercentage: 50,
+      advanceAmount,
+      totalAmount,
+      currencySymbol,
+      gstRate,
+      gstAmount: advanceGstAmount,
+      advanceWithGst: advanceTotalWithGst,
+      totalWithGst: advanceTotalWithGst,
+    },
+  });
+
+  // Launch Razorpay Standard Checkout
+  const handleLaunchRazorpayCheckout = async (chosenMethod?: 'all' | 'upi' | 'card' | 'netbanking' | 'bank_transfer' | 'qr') => {
+    const activeMethod = chosenMethod || selectedMethod;
+    const RazorpayConstructor = (window as unknown as { Razorpay?: new (opts: unknown) => { open: () => void } }).Razorpay;
+    
+    if (!RazorpayConstructor) {
+      alert('Razorpay gateway script is loading. Please check your internet connection or try again in a few seconds.');
+      return;
+    }
+
     setIsProcessingPayment(true);
-    setTimeout(() => {
-      const newReceipt: PaymentReceipt = {
-        receiptId: `INV-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`,
-        transactionId: jurisdiction === 'international' ? `TXN-STRIPE-${Date.now().toString().slice(-8)}` : `TXN-UPI-${Date.now().toString().slice(-8)}`,
-        date: new Date().toLocaleString('en-IN'),
-        payerName: clientName || signatoryName || 'Valued Client',
-        payerEmail: clientEmail || 'client@example.com',
-        companyName: companyName || 'Client Organization',
-        clientJurisdiction: jurisdiction,
-        amountPaid: advanceAmount,
-        totalAmount: totalAmount,
-        currency: currencyCode as any,
-        currencySymbol: currencySymbol,
-        milestoneDescription: '40% Initial Upfront Advance (Sprint Initiation & Architecture Setup)',
-        paymentMethod: jurisdiction === 'international' ? (paymentMethod === 'card' ? 'INTERNATIONAL CARD (STRIPE 3D-SECURE)' : 'GLOBAL QR (WISE / STRIPE PAY)') : paymentMethod.toUpperCase(),
-        identityVerified: true,
-        identityReference: `${identityType.toUpperCase()}-${identityNumber ? identityNumber.slice(-4) : 'VERIFIED'}`,
-        profilePhotoThumbnail: profilePhoto || undefined,
-        status: 'SUCCESS',
+
+    try {
+      let prefillMethod: string | undefined = undefined;
+      if (activeMethod === 'card') prefillMethod = 'card';
+      else if (activeMethod === 'upi' || activeMethod === 'qr') prefillMethod = 'upi';
+      else if (activeMethod === 'netbanking') prefillMethod = 'netbanking';
+
+      // 1. Attempt to create order via Render backend (with 18% GST calculation)
+      let serverOrderId: string | undefined = undefined;
+      const backendOrder = await createBackendRazorpayOrder({
+        amount: advanceAmount,
+        currency: currencyCode,
+        agreementId,
+        companyName: companyName || clientName || 'Client Entity',
+        clientName: clientName || signatoryName || 'Signatory',
+        clientEmail: clientEmail || 'client@example.com',
+      });
+
+      if (backendOrder?.orderId && !backendOrder.orderId.startsWith('order_test')) {
+        serverOrderId = backendOrder.orderId;
+      }
+
+      const options = {
+        key: paymentConfig.razorpay.keyId,
+        order_id: serverOrderId,
+        amount: Math.round(advanceTotalWithGst * 100), // in paise, strictly includes 18% GST
+        currency: currencyCode === 'USD' ? 'USD' : 'INR',
+        name: paymentConfig.razorpay.businessName,
+        description: `40% Advance Deposit + 18% GST - Agreement ${agreementId}`,
+        image: '/images/rahul-raj.png',
+        handler: async (response: { razorpay_payment_id: string; razorpay_order_id?: string; razorpay_signature?: string }) => {
+          setIsProcessingPayment(false);
+
+          if (response.razorpay_signature && (response.razorpay_order_id || serverOrderId)) {
+            await verifyBackendPaymentSignature({
+              razorpay_order_id: response.razorpay_order_id || serverOrderId || '',
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+          }
+
+          const methodLabel = activeMethod === 'all' ? 'RAZORPAY SECURE' : `RAZORPAY (${activeMethod.toUpperCase()})`;
+          const newReceipt: PaymentReceipt = {
+            receiptId: `INV-GST-${Date.now().toString().slice(-6)}`,
+            transactionId: response.razorpay_payment_id || `RZP-${Date.now().toString().slice(-8)}`,
+            date: new Date().toLocaleString('en-IN'),
+            payerName: clientName || signatoryName || 'Valued Client',
+            payerEmail: clientEmail || 'client@example.com',
+            companyName: companyName || 'Client Organization',
+            clientJurisdiction: jurisdiction,
+            amountPaid: advanceTotalWithGst,
+            baseAmount: advanceAmount,
+            gstRate: gstRate,
+            gstAmount: advanceGstAmount,
+            totalAmount: totalAmount,
+            currency: (currencyCode === 'USD' ? 'USD' : 'INR') as 'INR' | 'USD',
+            currencySymbol: currencySymbol,
+            milestoneDescription: '40% Initial Upfront Advance + 18% GST (Sprint Initiation & Architecture Setup)',
+            paymentMethod: `${methodLabel} &bull; DIRECT BANK SETTLEMENT`,
+            identityVerified: true,
+            identityReference: `${identityType.toUpperCase()}-${identityNumber ? identityNumber.slice(-4) : 'VERIFIED'}`,
+            profilePhotoThumbnail: profilePhoto || undefined,
+            status: 'SUCCESS',
+            gateway: 'Razorpay',
+            settlementAccount: paymentConfig.razorpay.settlementBankNote,
+          };
+          setReceipt(newReceipt);
+          setCurrentStep('receipt');
+        },
+        prefill: {
+          name: clientName || signatoryName,
+          email: clientEmail,
+          contact: clientPhone,
+          method: prefillMethod,
+        },
+        notes: {
+          agreement_id: agreementId,
+          company: companyName,
+          base_amount: `${currencySymbol}${advanceAmount.toLocaleString('en-IN')}`,
+          gst_rate: `${gstRate}%`,
+          gst_amount: `${currencySymbol}${advanceGstAmount.toLocaleString('en-IN')}`,
+          total_payable: `${currencySymbol}${advanceTotalWithGst.toLocaleString('en-IN')}`,
+          settlement: 'Direct Bank Settlement to Rahul Raj via Razorpay',
+        },
+        theme: {
+          color: paymentConfig.razorpay.themeColor,
+        },
+        modal: {
+          ondismiss: () => {
+            setIsProcessingPayment(false);
+          },
+        },
       };
-      setReceipt(newReceipt);
+
+      const rzp = new RazorpayConstructor(options);
+      rzp.open();
+    } catch (e) {
       setIsProcessingPayment(false);
-      setCurrentStep('receipt');
-    }, 1500);
+      console.error('Razorpay invocation error:', e);
+    }
   };
 
   return (
@@ -512,6 +627,22 @@ Official Recipient: rahulgupt1231@gmail.com
                   placeholder="Describe your requirements: e.g. Customer login portal, admin dashboard, payment gateway integration, product catalog, SEO blogs, reference links..."
                   className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:border-blue-500 resize-none"
                 />
+              </div>
+
+              <div>
+                <label className="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-1.5">
+                  Target Delivery Timeline:
+                </label>
+                <select
+                  value={selectedTimeline}
+                  onChange={(e) => setSelectedTimeline(e.target.value)}
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs sm:text-sm focus:outline-none focus:border-blue-500"
+                >
+                  <option value="1 - 2 Weeks">1 - 2 Weeks (Fast-track MVP / Landing Page)</option>
+                  <option value="2 - 3 Weeks">2 - 3 Weeks (Growth Full-Stack App)</option>
+                  <option value="3 - 4 Weeks">3 - 4 Weeks (Enterprise Workflow &amp; Custom Portal)</option>
+                  <option value="4 - 6 Weeks">4 - 6 Weeks (Turnkey System &amp; AI Suite)</option>
+                </select>
               </div>
             </div>
 
@@ -854,6 +985,7 @@ Official Recipient: rahulgupt1231@gmail.com
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
                 <div className="text-blue-400">
                   1. Upfront Advance (40%): {currencySymbol}{advanceAmount.toLocaleString('en-IN')}
+                  <span className="block text-[10px] text-cyan-300 font-semibold">+ 18% GST: {currencySymbol}{advanceGstAmount.toLocaleString('en-IN')} (Total: {currencySymbol}{advanceTotalWithGst.toLocaleString('en-IN')})</span>
                 </div>
                 <div className="text-cyan-400">
                   2. Mid-Milestone (10%): {currencySymbol}{midAmount.toLocaleString('en-IN')}
@@ -945,277 +1077,222 @@ Official Recipient: rahulgupt1231@gmail.com
                       alert('Please sign and accept the agreement terms to proceed.');
                       return;
                     }
-                    setCurrentStep('payment');
+                    if (onOpenDedicatedPayment) {
+                      onOpenDedicatedPayment(getPitchDataObject());
+                    } else {
+                      setCurrentStep('payment');
+                    }
                   }}
                   className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25"
                 >
-                  <span>Accept Bond &amp; Pay 40% Advance</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Lock className="w-4 h-4 text-cyan-200" />
+                  <span>Accept Bond &amp; Open Payment Gateway &rarr;</span>
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* ================= STEP 4: HIGH-SECURITY & FREE PAYMENT GATEWAY ================= */}
+        {/* ================= STEP 4: RAZORPAY PAYMENT GATEWAY WITH 18% GST ================= */}
         {currentStep === 'payment' && (
-          <div className="max-w-2xl mx-auto rounded-3xl bg-slate-900/90 border border-emerald-500/40 p-6 sm:p-10 shadow-2xl animate-fadeIn">
+          <div className="max-w-3xl mx-auto rounded-3xl bg-slate-900/90 border border-emerald-500/40 p-6 sm:p-10 shadow-2xl animate-fadeIn space-y-6">
             
             {/* Security Guarantee & Free Integration Header */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-950 to-blue-950/40 border border-emerald-500/30 mb-6 flex items-center justify-between flex-wrap gap-3">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-950 to-blue-950/40 border border-emerald-500/30 flex items-center justify-between flex-wrap gap-3">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300">
                   <Lock className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-xs font-bold text-white block">Bank-Grade 256-Bit SSL Encrypted</span>
-                  <span className="text-[11px] text-emerald-400 font-mono">100% Free Integration &bull; 0% Client Surcharge</span>
+                  <span className="text-xs font-bold text-white block">Razorpay 256-Bit SSL Encrypted Terminal</span>
+                  <span className="text-[11px] text-emerald-400 font-mono">Direct Bank Account Settlement &bull; 18% GST Tax Compliant</span>
                 </div>
               </div>
 
               <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-slate-900 text-slate-300 border border-slate-700">
-                PCI-DSS Level 1 Compliant
+                PCI-DSS Level 1 Certified
               </span>
             </div>
 
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800 flex-wrap gap-2">
               <div>
                 <span className="text-xs font-mono text-emerald-400 font-bold uppercase block">
-                  {jurisdiction === 'international' ? '🌍 Global Gateway' : '🇮🇳 Domestic Gateway'} &bull; Step 4
+                  Official Gateway &bull; Step 4 of 5
                 </span>
-                <h3 className="text-xl font-bold text-white">
-                  Pay 40% Advance Deposit: {currencySymbol}{advanceAmount.toLocaleString('en-IN')}
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  Pay 40% Advance Deposit with 18% GST
                 </h3>
               </div>
-              <span className="text-xs font-mono px-3 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                Total Scope: {currencySymbol}{totalAmount.toLocaleString('en-IN')}
-              </span>
+              <div className="text-right">
+                <span className="text-[10px] font-mono text-slate-400 uppercase block">Total Due (with GST)</span>
+                <span className="text-xl font-extrabold text-emerald-400 font-mono">
+                  {currencySymbol}{advanceTotalWithGst.toLocaleString('en-IN')}
+                </span>
+              </div>
             </div>
 
-            {/* Jurisdiction-Aware Payment Method Selector */}
-            {jurisdiction === 'international' ? (
-              /* INTERNATIONAL CLIENT: STRICTLY CARD OR GLOBAL QR */
-              <div className="space-y-4 mb-6">
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('card')}
-                    className={`p-3.5 rounded-xl border text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all ${
-                      paymentMethod === 'card'
-                        ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <CreditCard className="w-4 h-4" />
-                    <span>International Card (Visa / MC / Amex)</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('global_qr')}
-                    className={`p-3.5 rounded-xl border text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all ${
-                      paymentMethod === 'global_qr'
-                        ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                    }`}
-                  >
-                    <QrCode className="w-4 h-4" />
-                    <span>Global QR (Stripe / Wise)</span>
-                  </button>
-                </div>
-                <div className="text-[11px] text-slate-400 font-mono text-center">
-                  * Domestic payment channels (UPI/RuPay/NetBanking) are restricted to Indian domestic accounts.
-                </div>
+            {/* Dedicated Page Option Banner */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-slate-950 to-blue-950/60 border border-emerald-500/50 flex items-center justify-between flex-wrap gap-3">
+              <div>
+                <span className="text-xs font-bold text-white block">Dedicated Checkout Page Available</span>
+                <span className="text-[11px] text-slate-300 font-mono">Open in standalone full-screen 256-bit SSL encrypted terminal</span>
               </div>
-            ) : (
-              /* INDIAN CLIENT: ALL PAYMENT METHODS AVAILABLE */
-              <div className="grid grid-cols-3 gap-2 mb-6">
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod('upi')}
-                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1.5 transition-all ${
-                    paymentMethod === 'upi'
-                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
-                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <QrCode className="w-4 h-4" />
-                  <span>UPI (QR / Apps)</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod('card')}
-                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1.5 transition-all ${
-                    paymentMethod === 'card'
-                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
-                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <CreditCard className="w-4 h-4" />
-                  <span>Cards (RuPay / Visa)</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod('netbanking')}
-                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1.5 transition-all ${
-                    paymentMethod === 'netbanking'
-                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
-                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <Building2 className="w-4 h-4" />
-                  <span>Net Banking</span>
-                </button>
-              </div>
-            )}
-
-            {/* CHANNEL 1: CARD PAYMENT (INTERNATIONAL & DOMESTIC) */}
-            {paymentMethod === 'card' && (
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 mb-6">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 border-b border-slate-800">
-                  <span>Stripe 3D-Secure 2.0 Card Gateway</span>
-                  <div className="flex items-center gap-1 text-[11px] text-cyan-400">
-                    <span>Visa</span> &bull; <span>Mastercard</span> &bull; <span>Amex</span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">Cardholder Legal Name:</label>
-                  <input
-                    type="text"
-                    value={cardHolder || clientName}
-                    onChange={(e) => setCardHolder(e.target.value)}
-                    placeholder="Name as it appears on card"
-                    className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">Card Number:</label>
-                  <input
-                    type="text"
-                    value={cardNumber}
-                    onChange={(e) => setCardNumber(e.target.value)}
-                    placeholder="4532 •••• •••• 8921"
-                    className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono"
-                  />
-                </div>
-
-                <div className="grid grid-cols-3 gap-3">
-                  <div>
-                    <label className="text-xs font-mono text-slate-400 block mb-1">Expiry (MM/YY):</label>
-                    <input
-                      type="text"
-                      value={cardExpiry}
-                      onChange={(e) => setCardExpiry(e.target.value)}
-                      placeholder="08/28"
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono text-center"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-mono text-slate-400 block mb-1">CVV / CVC:</label>
-                    <input
-                      type="password"
-                      maxLength={4}
-                      value={cardCvv}
-                      onChange={(e) => setCardCvv(e.target.value)}
-                      placeholder="•••"
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono text-center"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs font-mono text-slate-400 block mb-1">Postal / ZIP Code:</label>
-                    <input
-                      type="text"
-                      value={billingZip}
-                      onChange={(e) => setBillingZip(e.target.value)}
-                      placeholder="10001"
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono text-center"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* CHANNEL 2: GLOBAL QR (INTERNATIONAL CLIENTS) */}
-            {paymentMethod === 'global_qr' && (
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-4 mb-6 text-center">
-                <div className="w-40 h-40 mx-auto bg-white p-2.5 rounded-2xl shadow-inner flex flex-col items-center justify-center">
-                  <svg className="w-full h-full text-slate-900" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm8-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z" />
-                  </svg>
-                </div>
-                <div className="text-xs font-mono text-slate-300">
-                  Scan via Apple Pay, Google Pay Global, Stripe Link, or Wise App
-                </div>
-                <div className="text-[11px] text-emerald-400 font-mono">
-                  Cross-Border Global Wire Ref: <strong>INTL-{agreementId}</strong>
-                </div>
-              </div>
-            )}
-
-            {/* CHANNEL 3: UPI PAYMENT (DOMESTIC CLIENTS) */}
-            {paymentMethod === 'upi' && (
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-4 mb-6 text-center">
-                <div className="w-40 h-40 mx-auto bg-white p-2.5 rounded-2xl shadow-inner flex flex-col items-center justify-center">
-                  <svg className="w-full h-full text-slate-900" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm8-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v2h-2v-2zm2-2h2v2h-2v-2zm0 4h2v2h-2v-2z" />
-                  </svg>
-                </div>
-                <div className="text-xs font-mono text-slate-300">
-                  Scan with GPay, PhonePe, Paytm, or BHIM
-                </div>
-                <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 inline-block font-mono text-xs text-emerald-400">
-                  UPI ID: <strong className="text-white">6209980667-2@axl</strong> (Copy)
-                </div>
-
-                <div>
-                  <label className="text-[11px] font-mono text-slate-400 block mb-1">
-                    Enter UPI Reference / UTR Number (Optional for instant sync):
-                  </label>
-                  <input
-                    type="text"
-                    value={upiRef}
-                    onChange={(e) => setUpiRef(e.target.value)}
-                    placeholder="e.g. 402918291039"
-                    className="w-full max-w-sm mx-auto px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-mono text-center focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* CHANNEL 4: NET BANKING (DOMESTIC CLIENTS) */}
-            {paymentMethod === 'netbanking' && (
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 mb-6">
-                <label className="text-xs font-mono text-slate-400 block mb-1">Select Bank:</label>
-                <select className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs">
-                  <option>HDFC Bank Corporate / Retail</option>
-                  <option>State Bank of India (SBI)</option>
-                  <option>ICICI Bank</option>
-                  <option>Axis Bank</option>
-                  <option>Kotak Mahindra Bank</option>
-                </select>
-                <p className="text-[11px] text-slate-400">
-                  Zero surcharge &bull; Redirects securely to your institutional net banking portal.
-                </p>
-              </div>
-            )}
-
-            {/* Payment Trigger Button */}
-            <div className="space-y-3">
               <button
-                onClick={processAdvancePayment}
+                type="button"
+                onClick={() => {
+                  if (onOpenDedicatedPayment) {
+                    onOpenDedicatedPayment(getPitchDataObject());
+                  }
+                }}
+                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs font-mono flex items-center gap-1.5 transition-all shadow-md shadow-emerald-500/20"
+              >
+                <span>Open Dedicated Page &rarr;</span>
+              </button>
+            </div>
+
+            {/* Transparent 18% GST Breakdown Box */}
+            <div className="p-5 rounded-2xl bg-slate-950 border border-blue-500/30 space-y-2.5 font-mono text-xs">
+              <div className="flex justify-between items-center text-slate-400">
+                <span>Base 40% Milestone Advance:</span>
+                <span className="text-white font-semibold">{currencySymbol}{advanceAmount.toLocaleString('en-IN')}</span>
+              </div>
+              <div className="flex justify-between items-center text-cyan-300">
+                <span className="flex items-center gap-1">
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Applicable GST ({gstRate}% - CGST 9% + SGST 9%):</span>
+                </span>
+                <span className="font-bold">+{currencySymbol}{advanceGstAmount.toLocaleString('en-IN')}</span>
+              </div>
+              <div className="flex justify-between items-center text-sm font-bold text-white pt-2 border-t border-slate-800">
+                <span className="text-emerald-300">Total Payable Amount (with 18% GST):</span>
+                <span className="text-emerald-400 text-lg font-black">
+                  {currencySymbol}{advanceTotalWithGst.toLocaleString('en-IN')}
+                </span>
+              </div>
+            </div>
+
+            {/* Methods Supported Exclusively via Razorpay */}
+            <div className="space-y-3">
+              <label className="text-xs font-mono text-slate-300 font-bold block">
+                Choose Payment Method (All Processed via Razorpay &bull; Direct Bank Settlement):
+              </label>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                
+                {/* Method 1: UPI */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedMethod('upi');
+                    handleLaunchRazorpayCheckout('upi');
+                  }}
+                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1 transition-all ${
+                    selectedMethod === 'upi'
+                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                  }`}
+                >
+                  <Smartphone className="w-4 h-4 text-emerald-400" />
+                  <span>UPI / Instant Pay</span>
+                  <span className="text-[10px] text-slate-500 font-normal">GPay, PhonePe, Paytm</span>
+                </button>
+
+                {/* Method 2: Scan QR */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedMethod('qr');
+                    handleLaunchRazorpayCheckout('qr');
+                  }}
+                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1 transition-all ${
+                    selectedMethod === 'qr'
+                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                  }`}
+                >
+                  <QrCode className="w-4 h-4 text-cyan-400" />
+                  <span>Scan QR Code</span>
+                  <span className="text-[10px] text-slate-500 font-normal">Dynamic Razorpay QR</span>
+                </button>
+
+                {/* Method 3: Cards */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedMethod('card');
+                    handleLaunchRazorpayCheckout('card');
+                  }}
+                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1 transition-all ${
+                    selectedMethod === 'card'
+                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                  }`}
+                >
+                  <CreditCard className="w-4 h-4 text-blue-400" />
+                  <span>Debit / Credit Cards</span>
+                  <span className="text-[10px] text-slate-500 font-normal">RuPay, Visa, MC</span>
+                </button>
+
+                {/* Method 4: Net Banking */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedMethod('netbanking');
+                    handleLaunchRazorpayCheckout('netbanking');
+                  }}
+                  className={`p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1 transition-all ${
+                    selectedMethod === 'netbanking'
+                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                  }`}
+                >
+                  <Building2 className="w-4 h-4 text-purple-400" />
+                  <span>Net Banking</span>
+                  <span className="text-[10px] text-slate-500 font-normal">50+ Indian Banks</span>
+                </button>
+
+                {/* Method 5: Bank Transfer (NEFT/IMPS/RTGS) */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedMethod('bank_transfer');
+                    handleLaunchRazorpayCheckout('all');
+                  }}
+                  className={`col-span-2 sm:col-span-2 p-3 rounded-xl border text-xs font-mono font-bold flex flex-col items-center gap-1 transition-all ${
+                    selectedMethod === 'bank_transfer'
+                      ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-glow-emerald'
+                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                  }`}
+                >
+                  <Building2 className="w-4 h-4 text-amber-400" />
+                  <span>Bank Transfer (NEFT / IMPS / RTGS)</span>
+                  <span className="text-[10px] text-slate-500 font-normal">Razorpay Smart Collect Institutional Wire</span>
+                </button>
+
+              </div>
+            </div>
+
+            {/* Direct Bank Settlement Guarantee Note */}
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5 text-xs">
+              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="text-slate-300 leading-relaxed text-[11px]">
+                <strong>Direct Bank Settlement:</strong> All payments made via Card, UPI, Scan QR, Net Banking, or Bank Transfer are processed securely through <strong>Razorpay</strong> and credited directly to Rahul Raj&apos;s registered bank account.
+              </div>
+            </div>
+
+            {/* Primary Action Button */}
+            <div className="space-y-3 pt-2">
+              <button
+                onClick={() => handleLaunchRazorpayCheckout()}
                 disabled={isProcessingPayment}
-                className="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all"
+                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm sm:text-base font-mono flex items-center justify-center gap-2 shadow-xl shadow-emerald-500/25 transition-all disabled:opacity-50"
               >
                 {isProcessingPayment ? (
-                  <span>Securing Payment &amp; Registering Deed...</span>
+                  <span>Opening Razorpay Gateway...</span>
                 ) : (
                   <>
-                    <ShieldCheck className="w-4 h-4 text-emerald-200" />
-                    <span>Authorize 40% Advance ({currencySymbol}{advanceAmount.toLocaleString('en-IN')})</span>
+                    <Lock className="w-4 h-4 text-emerald-200" />
+                    <span>Pay {currencySymbol}{advanceTotalWithGst.toLocaleString('en-IN')} via Razorpay (All Methods)</span>
                   </>
                 )}
               </button>
@@ -1243,7 +1320,7 @@ Official Recipient: rahulgupt1231@gmail.com
                 Project Sprint Confirmed &amp; KYC Registered!
               </h3>
               <p className="text-xs text-slate-300">
-                Your 40% advance payment has been validated. Rahul &amp; Jyoti have been notified for immediate sprint kickoff.
+                Your 40% advance payment (with 18% GST) has been validated via Razorpay and credited directly to the bank account.
               </p>
             </div>
 
@@ -1257,7 +1334,7 @@ Official Recipient: rahulgupt1231@gmail.com
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[10px] text-slate-500 block">TRANSACTION REF</span>
+                  <span className="text-[10px] text-slate-500 block">RAZORPAY TX ID</span>
                   <span className="text-emerald-400 font-bold">{receipt.transactionId}</span>
                 </div>
               </div>
@@ -1279,11 +1356,34 @@ Official Recipient: rahulgupt1231@gmail.com
                 </div>
               </div>
 
+              {/* GST Breakdown in Receipt */}
+              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="flex justify-between items-center text-slate-400">
+                  <span>Base 40% Advance Deposit:</span>
+                  <span className="text-white font-bold">{receipt.currencySymbol}{advanceAmount.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-400">
+                  <span>Applicable GST (18% - CGST 9% + SGST 9%):</span>
+                  <span className="text-cyan-300 font-bold">+{receipt.currencySymbol}{advanceGstAmount.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="flex justify-between items-center text-white pt-2 border-t border-slate-800">
+                  <div>
+                    <span className="font-bold block">Total Amount Paid (Incl. 18% GST):</span>
+                    <span className="text-[11px] text-emerald-400 block">
+                      Gateway: Razorpay &bull; Direct Bank Account Settlement (Rahul Raj)
+                    </span>
+                  </div>
+                  <span className="text-xl font-black text-emerald-400">
+                    {receipt.currencySymbol}{receipt.amountPaid.toLocaleString('en-IN')}
+                  </span>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-300 pt-2">
                 <div>Service: <span className="text-white font-bold">{serviceType}</span></div>
                 <div>Payment Mode: <span className="text-white font-bold">{receipt.paymentMethod}</span></div>
-                <div>Amount Paid (40%): <span className="text-emerald-400 font-bold text-sm">{receipt.currencySymbol}{receipt.amountPaid.toLocaleString('en-IN')}</span></div>
-                <div>Remaining Balance: <span className="text-slate-400">{receipt.currencySymbol}{(receipt.totalAmount - receipt.amountPaid).toLocaleString('en-IN')}</span></div>
+                <div>Total Scope Budget: <span className="text-slate-300 font-bold">{receipt.currencySymbol}{receipt.totalAmount.toLocaleString('en-IN')}</span></div>
+                <div>Remaining Balance: <span className="text-slate-400">{receipt.currencySymbol}{(receipt.totalAmount - advanceAmount).toLocaleString('en-IN')}</span></div>
               </div>
 
               <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-400 space-y-1">

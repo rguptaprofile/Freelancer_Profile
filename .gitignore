@@ -1,4 +1,21 @@
+# Environment and sensitive credential files (STRICTLY NEVER COMMIT)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+*.cert
+*.crt
+credentials.json
+secrets.json
+
 # Logs
+logs
 logs
 *.log
 npm-debug.log*

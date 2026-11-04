@@ -4,17 +4,18 @@ import { Menu, X, Sparkles, Send, FileSignature } from 'lucide-react';
 interface NavbarProps {
   activeSection: string;
   onNavigate: (sectionId: string) => void;
+  currentPath?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, currentPath }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'work', label: 'Work (Hire & Pitch)' },
-    { id: 'catalog', label: 'Catalog' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'Home', path: '/' },
+    { id: 'about', label: 'About', path: '/about' },
+    { id: 'work', label: 'Work (Hire & Pitch)', path: '/work' },
+    { id: 'catalog', label: 'Catalog', path: '/catalog' },
+    { id: 'contact', label: 'Contact', path: '/contact' },
   ];
 
   const handleNavClick = (id: string) => {
@@ -60,6 +61,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
               <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold tracking-wide rounded-md bg-gradient-to-r from-blue-500/15 to-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-sm whitespace-nowrap">
                 Freelancer Duo Profile
               </span>
+              
+              {/* Active Route Path Badge */}
+              <span className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-950/80 border border-emerald-500/30 text-[10px] font-mono text-emerald-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>url: <strong className="text-white">{currentPath || (activeSection === 'home' ? '/' : `/${activeSection}`)}</strong></span>
+              </span>
             </div>
           </button>
 
@@ -71,13 +78,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+                  title={`Go to ${item.path}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
                     isActive
                       ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/30'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
                 </button>
               );
             })}
@@ -121,13 +129,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 activeSection === item.id
                   ? 'bg-blue-600 text-white font-semibold'
                   : 'text-slate-300 hover:bg-slate-800/60'
               }`}
             >
-              {item.label}
+              <span>{item.label}</span>
+              <span className={`text-[11px] font-mono ${activeSection === item.id ? 'text-blue-100 font-bold' : 'text-slate-500'}`}>
+                {item.path}
+              </span>
             </button>
           ))}
           <div className="pt-2 border-t border-slate-800">

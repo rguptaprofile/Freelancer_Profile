@@ -81,6 +81,10 @@ export interface ProjectPitchData {
     advanceAmount: number;
     totalAmount: number;
     currencySymbol: string;
+    gstRate?: number;
+    gstAmount?: number;
+    advanceWithGst?: number;
+    totalWithGst?: number;
   };
 }
 
@@ -93,6 +97,9 @@ export interface PaymentReceipt {
   companyName: string;
   clientJurisdiction: 'domestic' | 'international';
   amountPaid: number;
+  baseAmount?: number;
+  gstRate?: number;
+  gstAmount?: number;
   totalAmount: number;
   currency: 'INR' | 'USD';
   currencySymbol: string;
@@ -102,4 +109,6 @@ export interface PaymentReceipt {
   identityReference: string;
   profilePhotoThumbnail?: string;
   status: 'SUCCESS' | 'PENDING';
+  gateway?: string;
+  settlementAccount?: string;
 }
