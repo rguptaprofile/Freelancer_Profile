@@ -77,14 +77,11 @@ export const ContactSection: React.FC = () => {
                     <Mail className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div>
-                    <span className="font-semibold text-white block">Official Contact Inboxes</span>
-                    <div className="space-y-0.5 pt-0.5">
-                      <div className="text-[11px] text-slate-400">
-                        Rahul: <a href="mailto:rahulgupt1231@gmail.com" className="text-cyan-400 hover:underline">rahulgupt1231@gmail.com</a>
-                      </div>
-                      <div className="text-[11px] text-slate-400">
-                        Jyoti: <a href="mailto:vruchika02@gmail.com" className="text-amber-400 hover:underline">vruchika02@gmail.com</a>
-                      </div>
+                    <span className="font-semibold text-white block">Official Contact Inbox</span>
+                    <div className="pt-0.5">
+                      <a href="mailto:rahulgupt1231@gmail.com" className="text-cyan-400 hover:underline text-[12px]">
+                        rahulgupt1231@gmail.com
+                      </a>
                     </div>
                   </div>
                 </div>
