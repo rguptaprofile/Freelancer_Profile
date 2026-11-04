@@ -1168,7 +1168,7 @@ Official Recipient: rahulgupt1231@gmail.com
                   Scan with GPay, PhonePe, Paytm, or BHIM
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 inline-block font-mono text-xs text-emerald-400">
-                  UPI ID: <strong className="text-white">rahulraj@oksbi</strong> (Copy)
+                  UPI ID: <strong className="text-white">6209980667-2@axl</strong> (Copy)
                 </div>
 
                 <div>
